@@ -1,0 +1,8 @@
+language: rust
+rust:
+  - stable
+  - beta
+before_script:
+  - rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android
+script:
+  - cargo build --target aarch64-linux-android --release
