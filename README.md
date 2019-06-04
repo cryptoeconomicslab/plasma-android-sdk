@@ -1,4 +1,6 @@
-# plasma_android_sdk
+# plasma-android-sdk
+
+[![Build Status](https://travis-ci.org/cryptoeconomicslab/plasma-android-sdk.svg?branch=master)](https://travis-ci.org/cryptoeconomicslab/plasma-android-sdk)
 
 ### Setup
 
