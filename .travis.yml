@@ -9,6 +9,7 @@ jobs:
     - stage: tests
       rust: stable
       before_script:
+        - cd rust
         - rustup component add rustfmt
         - rustup component add clippy
       script:
@@ -18,6 +19,7 @@ jobs:
     - stage: tests
       rust: beta
       before_script:
+        - cd rust
         - rustup component add rustfmt
         - rustup component add clippy
       script:
@@ -27,6 +29,7 @@ jobs:
     - stage: deploy
       rust: stable
       before_install:
+        - cd rust
         - sh ci.sh
       before_script:
         - rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android
