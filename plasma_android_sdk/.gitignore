@@ -1,1 +1,2 @@
 build/
+jni-libs/*/*.so
