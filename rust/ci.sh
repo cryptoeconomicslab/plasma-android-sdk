@@ -13,7 +13,7 @@ else
     echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
     rm android-ndk-r19c-linux-x86_64.zip
     mkdir $HOME/.NDK
-    ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 28 --arch arm64 --install-dir $HOME/.NDK/arm64;
-    ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 28 --arch arm --install-dir $HOME/.NDK/arm;
-    ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 28 --arch x86 --install-dir $HOME/.NDK/x86;
+    ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 28 --arch arm64 --install-dir ${HOME}/.NDK/arm64;
+    ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 28 --arch arm --install-dir ${HOME}/.NDK/arm;
+    ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 28 --arch x86 --install-dir ${HOME}/.NDK/x86;
 fi

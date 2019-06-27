@@ -1,14 +1,15 @@
 #![cfg(target_os = "android")]
 #![allow(non_snake_case)]
 
-use ethereum_types::Address;
+// FIXME: add package below, for now some how failed to build
+// use ethereum_types::Address;
 use jni::objects::{JObject, JString};
 use jni::sys::jstring;
 use jni::JNIEnv;
 use std::ffi::{CStr, CString};
 
 #[no_mangle]
-pub unsafe extern "C" fn Java_com_example_android_MainActivity_hello(
+pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_ExternalMethodsKt_hello(
     env: JNIEnv,
     _: JObject,
     j_recipient: JString,
