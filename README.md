@@ -44,6 +44,12 @@ As default, it will install in `<YOUR-HOME-PATH>/.NDK`.
 ### Copy and Edit config file
 `rust/config.private` is a config file to build rust source code. Since this is user specific it is ignored from git. Just copy this file and rename it to `config` and edit `<YOUR-HOME-PATH>` to your actual home path.
 
+### Add Android architectures to rustup
+
+```
+$ rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android
+```
+
 ## Build your binary for Android
 If you are completely set, you can now build rust source code and use it from Android App.
 
