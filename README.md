@@ -65,6 +65,17 @@ Your build command should look like
 $ sh tools/build.sh
 ```
 
+But before that since make sure you have folder named `arm64-v8a`, `armeabi-v7a`, `x86`, under `plasma-android-sdk/plasma_android_sdk/jni-libs/`.
+If not create folder and run the script.
+
+If you don't have those folders, you will see following error message and just fix typo etc...
+
+```
+cp: ../plasma_android_sdk/jni-libs/arm64-v8a/libplasma_android_sdk.so: No such file or directory
+cp: ../plasma_android_sdk/jni-libs/armeabi-v7a/libplasma_android_sdk.so: No such file or directory
+cp: ../plasma_android_sdk/jni-libs/x86/libplasma_android_sdk.so: No such file or directory
+```
+
 This will do all the following work for you.
 1. copy config file to global config, so that `cargo build` will look at that config.
 2. build rust source code to each OS targets.
