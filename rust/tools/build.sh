@@ -2,12 +2,16 @@
 
 file_name="libplasma_android_sdk.so"
 jni_path="../plasma_android_sdk/jni-libs"
+ndk_path="$HOME/.NDK"
 
 cp config ~/.cargo/config
 
-cargo build --target aarch64-linux-android --release
-cargo build --target armv7-linux-androideabi --release
-cargo build --target i686-linux-android --release
+# Cargo don't set CC(compiler) and AR(archiver) environments now.
+# This is urgent workaround.
+# see https://github.com/alexcrichton/cc-rs/issues/82
+AR=${ndk_path}/arm64/bin/aarch64-linux-android-ar CC=${ndk_path}/arm64/bin/aarch64-linux-android-clang cargo build --target aarch64-linux-android --release
+AR=${ndk_path}/arm/bin/arm-linux-androideabi-ar CC=${ndk_path}/arm/bin/arm-linux-androideabi-clang cargo build --target armv7-linux-androideabi --release
+AR=${ndk_path}/x86/bin/i686-linux-android-ar CC=${ndk_path}/x86/bin/i686-linux-android-clang cargo build --target i686-linux-android --release
 
 # directory name should be matched with ABI
 # see https://forge.rust-lang.org/platform-support.html for rust targets
