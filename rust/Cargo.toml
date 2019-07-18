@@ -8,6 +8,12 @@ edition = "2018"
 jni = { version = "0.10.2", default-features = false }
 plasma-core = { git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git" }
 
+[dependencies.plasma-client]
+git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
+branch = "master"
+default-features = false
+features = ["noleveldb"]
+
 [profile.release]
 lto = true
 
