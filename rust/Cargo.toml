@@ -14,6 +14,16 @@ branch = "clean-dependencies"
 default-features = false
 features = ["noleveldb"]
 
+[dependencies.event-watcher]
+git = "https://github.com/syuhei176/plasma-rust-framework.git"
+branch = "android-issue-16"
+# path = "../../plasma-rust-framework/event-watcher"
+
+[dependencies.contract-wrapper]
+git = "https://github.com/syuhei176/plasma-rust-framework.git"
+branch = "android-issue-16"
+# path = "../../plasma-rust-framework/contract-wrapper"
+
 [profile.release]
 lto = true
 
