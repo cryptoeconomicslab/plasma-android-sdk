@@ -13,5 +13,7 @@ class MainActivity : AppCompatActivity() {
         RustClient.initialize()
 
         findViewById<TextView>(R.id.text).text = RustClient.sayHello()
+
+        RustClient.sayHelloFromRust()
     }
 }
