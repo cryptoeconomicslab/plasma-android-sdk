@@ -2,7 +2,7 @@
 
 Following diagram shows how features and modules are implemented.
 
-![]( ../assets/uml/out/architecute_sample/architecute_sample.png)
+![]( ../assets/uml/architecute_sample.png)
 
 From application point of view, you can only access to public method of RustClient class.  
 All the features are packed in package and all the methods are module private.  
