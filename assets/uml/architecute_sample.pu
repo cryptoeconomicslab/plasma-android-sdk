@@ -1,0 +1,30 @@
+@startuml
+package "featureA" {
+  interface featureA1Contract
+  interface featureA2Contract
+  featureA1Contract <|-- featureA1
+  featureA1Contract <|-- featureA1Mock
+  featureA2Contract <|-- featureA2
+  featureA2Contract <|-- featureA2Mock
+  featureA1 ..|> rust_layer
+  featureA2 ..|> rust_layer
+}
+
+package "featureB" {
+  interface featureB1Contract
+  featureB1Contract <|-- featureB1
+  featureB1Contract <|-- featureB1Mock
+  featureB1 ..|> rust_layer
+}
+
+package rust_layer {
+
+}
+
+Application ..|> RustClient : do something
+RustClient ..|> featureA1Contract
+RustClient ..|> featureA2Contract
+RustClient ..|> featureB1Contract
+
+
+@enduml
