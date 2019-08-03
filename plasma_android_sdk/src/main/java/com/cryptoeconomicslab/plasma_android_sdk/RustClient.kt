@@ -1,12 +1,16 @@
 package com.cryptoeconomicslab.plasma_android_sdk
 
-object RustClient {
+import com.cryptoeconomicslab.plasma_android_sdk.hello_world.HelloWorld
 
-    fun initialize() {
-        System.loadLibrary("plasma_android_sdk")
+class RustClient {
+
+    companion object {
+        fun initialize() {
+            System.loadLibrary("plasma_android_sdk")
+        }
     }
 
-    fun sayHello(): String {
-        return hello("from plasma rust sdk")
+    fun sayHello(message: String): String {
+        return HelloWorld().hello(message)
     }
 }
