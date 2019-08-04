@@ -2,7 +2,10 @@ package com.cryptoeconomicslab.plasma_android_sdk
 
 import com.cryptoeconomicslab.plasma_android_sdk.hello_world.HelloWorld
 
-class RustClient {
+/**
+ * Client for communication with Rust layer.
+ */
+class PlasmaClient {
 
     companion object {
         /**
