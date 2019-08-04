@@ -10,8 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        RustClient.initialize()
+        val client = PlasmaClient()
 
-        findViewById<TextView>(R.id.text).text = RustClient.sayHello()
+        findViewById<TextView>(R.id.text).text = client.sayHello("from plasma rust sdk")
     }
 }
