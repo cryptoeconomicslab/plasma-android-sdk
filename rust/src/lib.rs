@@ -3,9 +3,9 @@
 
 use std::ffi::{CStr, CString};
 
-use jni::JNIEnv;
-use jni::objects::{JObject, JString};
+use jni::objects::{JObject, JString, JValue};
 use jni::sys::jstring;
+use jni::JNIEnv;
 
 use plasma_core::data_structure::Range;
 
@@ -26,5 +26,22 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_
             "Hello ".to_owned() + &format!("range={:?}", range) + recipient.to_str().unwrap(),
         )
         .unwrap();
+
     output.into_inner()
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_database_DatabaseClient_insertFromRust(
+    env: JNIEnv,
+    _: JObject,
+    message: jstring,
+    executor: JObject,
+) {
+    env.call_method(
+        executor,
+        "insert",
+        "(Ljava/lang/String;)V",
+        &[JValue::Object(message.into())],
+    )
+    .unwrap();
 }

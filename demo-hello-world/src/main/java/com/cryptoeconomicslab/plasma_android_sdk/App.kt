@@ -9,6 +9,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        PlasmaClient.initialize()
+        PlasmaClient.initialize(applicationContext)
     }
 }
