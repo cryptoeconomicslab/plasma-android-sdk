@@ -1,8 +1,10 @@
 package com.cryptoeconomicslab.plasma_android_sdk
 
 import android.content.Context
+import android.util.Log
 import com.cryptoeconomicslab.plasma_android_sdk.common.ContextProvider
 import com.cryptoeconomicslab.plasma_android_sdk.database.DatabaseClient
+import com.cryptoeconomicslab.plasma_android_sdk.pubsub.Client
 import com.cryptoeconomicslab.plasma_android_sdk.database.DatabaseExecutor
 import com.cryptoeconomicslab.plasma_android_sdk.database.entity.SimpleEntity
 import com.cryptoeconomicslab.plasma_android_sdk.hello_world.HelloWorld
@@ -52,5 +54,9 @@ class PlasmaClient {
      */
     fun insertFromRust(string: String) {
         DatabaseClient().insertFromRust(string, DatabaseExecutor)
+    }
+
+    fun listen_client() {
+        Log.d("listen_client", Client().listen())
     }
 }
