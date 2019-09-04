@@ -9,14 +9,15 @@ use jni::sys::jstring;
 use jni::JNIEnv;
 
 
-#[macro_use] extern crate log;
+#[macro_use]
+extern crate log;
 extern crate android_logger;
 
-use log::Level;
 use android_logger::{Config,FilterBuilder};
+use log::Level;
 
 use plasma_core::data_structure::Range;
-use pubsub_messaging:: { connect, ClientHandler as Handler, Message, Sender };
+use pubsub_messaging:: {connect, ClientHandler as Handler, Message, Sender};
 
 #[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_1world_HelloWorld_hello(
@@ -70,14 +71,15 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
     _: JObject,
     message: jstring,
 ) -> jstring {
-    android_logger::init_once(
-        Config::default().with_min_level(Level::Trace));
+    android_logger::init_once(Config::default().with_min_level(Level::Trace));
 
     let handler = Handle();
     let mut client = connect("10.0.2.2:8080", handler).unwrap();
     let msg = Message::new("SERVER".to_string(), b"Hello from Android".to_vec());
     client.send(msg.clone());
 
-    env.new_string(format!("I am client, I sent message: {:?}", msg)).unwrap().into_inner()
+    env.new_string(format!("I am client, I sent message: {:?}", msg))
+        .unwrap()
+        .into_inner()
 }
 
