@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.add_button).setOnClickListener {
-            client.insertFromRust(generateRandomString())
+            client.listen_client()
         }
     }
 

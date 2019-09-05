@@ -6,13 +6,16 @@ edition = "2018"
 
 [dependencies]
 jni = { version = "0.10.2", default-features = false }
-plasma-core = { git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git" }
+log = "*"
+android_logger = "0.8"
 
-[dependencies.plasma-client]
+[dependencies.plasma-core]
 git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
-branch = "master"
-default-features = false
-features = ["noleveldb"]
+branch = "restrictweb3-features"
+
+[dependencies.pubsub-messaging]
+git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
+
 
 [profile.release]
 lto = true
