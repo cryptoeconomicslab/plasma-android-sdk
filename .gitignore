@@ -66,3 +66,6 @@ fastlane/readme.md
 
 # MacOS
 .DS_Store
+
+# Rust
+target
