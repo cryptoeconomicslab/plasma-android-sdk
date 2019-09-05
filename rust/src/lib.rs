@@ -8,16 +8,15 @@ use jni::objects::{JObject, JString, JValue};
 use jni::sys::jstring;
 use jni::JNIEnv;
 
-
 #[macro_use]
 extern crate log;
 extern crate android_logger;
 
-use android_logger::{Config,FilterBuilder};
+use android_logger::{Config, FilterBuilder};
 use log::Level;
 
 use plasma_core::data_structure::Range;
-use pubsub_messaging:: {connect, ClientHandler as Handler, Message, Sender};
+use pubsub_messaging::{connect, ClientHandler as Handler, Message, Sender};
 
 #[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_1world_HelloWorld_hello(
@@ -82,4 +81,3 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
         .unwrap()
         .into_inner()
 }
-
