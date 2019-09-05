@@ -56,6 +56,10 @@ class PlasmaClient {
         DatabaseClient().insertFromRust(string, DatabaseExecutor)
     }
 
+    /**
+     * [Pubsub function]
+     * This method will invoke rust method to listen client
+     */
     fun listen_client() {
         Log.d("listen_client", Client().listen())
     }
