@@ -27,7 +27,6 @@ class DBFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_db, container, false)
 
-
         val client = PlasmaClient()
 
         textView = view.findViewById(com.cryptoeconomicslab.plasma_android_sdk.R.id.text)

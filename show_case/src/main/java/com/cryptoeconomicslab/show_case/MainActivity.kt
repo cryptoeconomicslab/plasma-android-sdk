@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.cryptoeconomicslab.show_case.fragment.DBFragment
 import com.cryptoeconomicslab.show_case.fragment.HelloWorldFragment
+import com.cryptoeconomicslab.show_case.fragment.NetworkFragment
 import com.google.android.material.navigation.NavigationView
 
 /**
@@ -37,6 +38,12 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_db_sample -> {
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.main_container, DBFragment())
+                            .commit()
+                    }
+
+                    R.id.nav_network_sample -> {
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.main_container, NetworkFragment())
                             .commit()
                     }
                 }
