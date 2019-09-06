@@ -68,12 +68,13 @@ impl Handler for Handle {
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_listen(
     env: JNIEnv,
     _: JObject,
-    message: jstring,
+    j_endpoint: JString,
 ) -> jstring {
+    let endpoint = CString::from(CStr::from_ptr(env.get_string(j_endpoint).unwrap().as_ptr()));
     android_logger::init_once(Config::default().with_min_level(Level::Trace));
 
     let handler = Handle();
-    let mut client = connect("10.0.2.2:8080", handler).unwrap();
+    let mut client = connect(endpoint.to_str().unwrap(), handler).unwrap();
     let msg = Message::new("SERVER".to_string(), b"Hello from Android".to_vec());
     client.send(msg.clone());
 
