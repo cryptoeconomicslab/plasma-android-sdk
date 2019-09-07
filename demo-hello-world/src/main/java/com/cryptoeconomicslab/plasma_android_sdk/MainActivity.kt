@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.add_button).setOnClickListener {
-            client.listen_client("52.196.101.103:8080")
+            client.send("52.196.101.103:8080", "659cbb0e2411a44db63778987b1e22153c086a95eb6b18bdf89de078917abc63",
+                0, 10, "627306090abab3a6e1400e9345bc60c78a8bef57")
         }
     }
 

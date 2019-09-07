@@ -5,17 +5,24 @@ authors = ["Cryptoeconomics Lab <info@cryptoeconomicslab.com>"]
 edition = "2018"
 
 [dependencies]
+bytes = "0.4.12"
+hex = "0.3.1"
 jni = { version = "0.10.2", default-features = false }
 log = "*"
 android_logger = "0.8"
+ethereum-types = "^0.5.2"
 
 [dependencies.plasma-core]
 git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
-branch = "restrictweb3-features"
 
 [dependencies.pubsub-messaging]
 git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
 
+[dependencies.plasma-clients]
+git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
+
+[dependencies.plasma-db]
+git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
 
 [profile.release]
 lto = true
