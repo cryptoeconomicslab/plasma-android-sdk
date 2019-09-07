@@ -10,12 +10,15 @@ log = "*"
 android_logger = "0.8"
 
 [dependencies.plasma-core]
-git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
-branch = "restrictweb3-features"
+git = "https://github.com/syuhei176/plasma-rust-framework.git"
+branch = "ethboston1"
 
 [dependencies.pubsub-messaging]
 git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
 
+[dependencies.plasma-clients]
+git = "https://github.com/syuhei176/plasma-rust-framework.git"
+branch = "ethboston1"
 
 [profile.release]
 lto = true
