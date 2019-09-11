@@ -60,7 +60,24 @@ class PlasmaClient {
      * [Pubsub function]
      * This method will invoke rust method to listen client
      */
-    fun listen_client() {
-        Log.d("listen_client", Client().listen())
+    fun listen_client(url: String) {
+        Log.d("listen_client", Client().listen(url))
     }
+
+    fun send(
+        endpoint: String,
+        secretkey: String,
+        start: Int,
+        end: Int,
+        to: String
+    ) {
+        Log.d("listen_client", Client().send(
+            endpoint,
+            secretkey,
+            start,
+            end,
+            to
+        ))
+    }
+
 }

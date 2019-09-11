@@ -5,7 +5,7 @@ use std::ffi::{CStr, CString};
 use std::thread;
 
 use jni::objects::{JObject, JString, JValue};
-use jni::sys::jstring;
+use jni::sys::{jstring, jint};
 use jni::JNIEnv;
 
 #[macro_use]
@@ -13,10 +13,13 @@ extern crate log;
 extern crate android_logger;
 
 use android_logger::{Config, FilterBuilder};
+use bytes::Bytes;
 use log::Level;
-
+use ethereum_types::Address;
 use plasma_core::data_structure::Range;
 use pubsub_messaging::{connect, ClientHandler as Handler, Message, Sender};
+use plasma_clients::plasma::PlasmaClient;
+use plasma_db::impls::kvs::CoreDbMemoryImpl;
 
 #[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_1world_HelloWorld_hello(
@@ -68,12 +71,13 @@ impl Handler for Handle {
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_listen(
     env: JNIEnv,
     _: JObject,
-    message: jstring,
+    j_endpoint: JString,
 ) -> jstring {
+    let endpoint = CString::from(CStr::from_ptr(env.get_string(j_endpoint).unwrap().as_ptr()));
     android_logger::init_once(Config::default().with_min_level(Level::Trace));
 
     let handler = Handle();
-    let mut client = connect("10.0.2.2:8080", handler).unwrap();
+    let mut client = connect(endpoint.to_str().unwrap().to_string(), handler).unwrap();
     let msg = Message::new("SERVER".to_string(), b"Hello from Android".to_vec());
     client.send(msg.clone());
 
@@ -81,3 +85,36 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
         .unwrap()
         .into_inner()
 }
+
+#[no_mangle]
+pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_send(
+    env: JNIEnv,
+    _: JObject,
+    j_endpoint: JString,
+    j_secretkey: JString,
+    j_start: jint,
+    j_end: jint,
+    j_to: JString,
+) -> jstring {
+    let endpoint = CString::from(CStr::from_ptr(env.get_string(j_endpoint).unwrap().as_ptr()));
+    let secretkey = CString::from(CStr::from_ptr(env.get_string(j_secretkey).unwrap().as_ptr()));
+    let to = CString::from(CStr::from_ptr(env.get_string(j_to).unwrap().as_ptr()));
+
+    android_logger::init_once(Config::default().with_min_level(Level::Trace));
+     
+    let client = PlasmaClient::<CoreDbMemoryImpl>::new(
+        Address::zero(),
+        endpoint.to_str().unwrap().to_string(),
+        secretkey.to_str().unwrap(),
+    );
+
+    let tx = client.create_transaction(Range::new(j_start as u64, j_end as u64), Bytes::from(hex::decode(
+        to.to_str().unwrap()
+    ).unwrap()));
+    client.send_transaction(tx);
+
+    env.new_string(format!("Sended!"))
+        .unwrap()
+        .into_inner()
+}
+ 

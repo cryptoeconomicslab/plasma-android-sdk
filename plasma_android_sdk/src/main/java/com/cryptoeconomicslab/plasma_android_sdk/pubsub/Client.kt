@@ -10,4 +10,6 @@ internal class Client : ClientContract {
 
     external fun listen(string: String): String
 
+    external fun send(endpoint: String, string: String, start: Int, end: Int, to: String): String
+
 }
