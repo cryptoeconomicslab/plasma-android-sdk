@@ -4,6 +4,7 @@ import java.time.LocalDateTime
 
 
 data class ExchangeHistory(
+    val exchangeId: String,
     val type: String, // 'OFFERED' | 'OFFERED'
     val tokenId: String,
     val amount: Int,
