@@ -3,6 +3,9 @@ package com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity
 import java.time.LocalDateTime
 
 
+/**
+ * ExchangeHistory data class
+ */
 data class ExchangeHistory(
     val exchangeId: String,
     val type: String, // 'OFFERED' | 'OFFERED'

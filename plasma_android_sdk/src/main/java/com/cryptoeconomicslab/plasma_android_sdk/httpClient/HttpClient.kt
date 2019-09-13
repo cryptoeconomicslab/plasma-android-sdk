@@ -5,6 +5,7 @@ import com.cryptoeconomicslab.plasma_android_sdk.httpClient.error.NotFound
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +17,7 @@ lateinit var retrofit: Retrofit
 val httpBuilder: OkHttpClient.Builder get() {
     // create http client
     val httpClient = OkHttpClient.Builder()
-        .addInterceptor(Interceptor { chain ->
+        .addInterceptor(Interceptor(fun(chain: Interceptor.Chain): Response {
             val original = chain.request()
 
             //header
@@ -25,8 +26,8 @@ val httpBuilder: OkHttpClient.Builder get() {
                 .method(original.method(), original.body())
                 .build()
 
-            return@Interceptor chain.proceed(request)
-        })
+            return chain.proceed(request)
+        }))
         .readTimeout(30, TimeUnit.SECONDS)
 
     // log interceptor
@@ -37,7 +38,7 @@ val httpBuilder: OkHttpClient.Builder get() {
     return httpClient
 }
 
-fun <S> create(serviceClass:Class<S>): S {
+internal fun <S> create(serviceClass:Class<S>): S {
     val gson = GsonBuilder()
         .serializeNulls()
         .create()
@@ -51,6 +52,9 @@ fun <S> create(serviceClass:Class<S>): S {
     return retrofit.create(serviceClass)
 }
 
+/**
+ * HttpClient Class
+ */
 class HttpClient: HttpClientContract {
     companion object {
         // TODO: get API endpoint from environment variable
@@ -90,7 +94,7 @@ class HttpClient: HttpClientContract {
 
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling create_account"))
         }
 
     }
@@ -109,7 +113,7 @@ class HttpClient: HttpClientContract {
                 return Result.failure(InternalError(response.errorBody().toString()))
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling get_payment_history"))
         }
     }
 
@@ -123,7 +127,7 @@ class HttpClient: HttpClientContract {
                 return Result.failure(InternalError(response.errorBody().toString()))
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling send_payment"))
         }
     }
 
@@ -141,7 +145,7 @@ class HttpClient: HttpClientContract {
                 return Result.failure(InternalError(response.errorBody().toString()))
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling get_exchange_offers"))
         }
 
     }
@@ -158,7 +162,7 @@ class HttpClient: HttpClientContract {
                 return Result.failure(InternalError(response.errorBody().toString()))
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling get_exchange_history"))
         }
 
     }
@@ -175,7 +179,7 @@ class HttpClient: HttpClientContract {
 
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling send_exchange"))
         }
     }
 
@@ -190,7 +194,7 @@ class HttpClient: HttpClientContract {
                 return Result.failure(InternalError(response.errorBody().toString()))
             }
         } catch (e: IOException) {
-            return Result.failure(InternalError("Internal Error"))
+            return Result.failure(InternalError("Internal Error: calling create_new_exchange_offer"))
         }
     }
 }
