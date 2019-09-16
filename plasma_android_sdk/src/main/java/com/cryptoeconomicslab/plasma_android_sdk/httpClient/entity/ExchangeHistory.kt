@@ -8,10 +8,19 @@ import java.time.LocalDateTime
  */
 data class ExchangeHistory(
     val exchangeId: String,
-    val type: String, // 'OFFERED' | 'OFFERED'
+    val type: ExchangeHistoryType,
     val tokenId: String,
     val amount: Int,
-    val status: String, // 'CONFIRMED' | 'PENDING'
+    val status: ExchangeHistoryStatus,
     val counterParty: CounterParty,
     val timestamp: LocalDateTime
 )
+
+enum class ExchangeHistoryType {
+    OFFERED,
+}
+
+enum class ExchangeHistoryStatus {
+    CONFIRMED,
+    PENDING,
+}

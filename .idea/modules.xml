@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/demo-hello-world/demo-hello-world.iml" filepath="$PROJECT_DIR$/demo-hello-world/demo-hello-world.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo-payment-usecase/demo-payment-usecase.iml" filepath="$PROJECT_DIR$/demo-payment-usecase/demo-payment-usecase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/plasma-android-sdk.iml" filepath="$PROJECT_DIR$/.idea/plasma-android-sdk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plasma-android-sdk.iml" filepath="$PROJECT_DIR$/plasma-android-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/plasma_android_sdk/plasma_android_sdk.iml" filepath="$PROJECT_DIR$/plasma_android_sdk/plasma_android_sdk.iml" />
     </modules>
   </component>
