@@ -2,26 +2,29 @@ package com.cryptoeconomicslab.demo_payment_usecase.ui.home.wallet
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.cryptoeconomicslab.demo_payment_usecase.R
+import com.cryptoeconomicslab.demo_payment_usecase.ui.home.ActionBarCallback
 
 /**
  * A simple [Fragment] subclass.
  */
-class WalletFragment : Fragment() {
+class WalletFragment(private val actionBarCallback: ActionBarCallback) : Fragment() {
 
     companion object {
-        fun getFragment() = WalletFragment()
+        fun getFragment(actionBarCallback: ActionBarCallback) = WalletFragment(actionBarCallback)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wallet, container, false)
+        actionBarCallback.setActionBarTitle(getString(R.string.screen__wallet_name))
+        actionBarCallback.clearActionBarMenu()
+
+        val view = inflater.inflate(R.layout.fragment_wallet, container, false)
+
+        return view
     }
 }

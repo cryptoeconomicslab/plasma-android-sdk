@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         tools:context=".ui.home.exchange.ExchangeFragment">
 
-</FrameLayout>
+    <Button
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_size__16"
+            android:background="@drawable/button_extended_fab_background"
+            android:drawableStart="@drawable/ic_add"
+            android:drawableTint="@color/textColor"
+            android:elevation="6dp"
+            android:paddingStart="@dimen/padding_size__16"
+            android:paddingEnd="@dimen/padding_size__16"
+            android:text="@string/screen__new_offer_name"
+            android:textAllCaps="false"
+            android:textColor="@color/textColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

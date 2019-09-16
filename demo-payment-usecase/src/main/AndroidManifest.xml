@@ -10,18 +10,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.scan_qr_code.ScanQRCodeActivity"></activity>
-        <activity android:name=".ui.offer_history.OfferHistory" />
-        <activity android:name=".ui.new_payment.NewPaymentActivity" />
-        <activity android:name=".ui.new_offers.NewOfferActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.scan_qr_code.ScanQRCodeActivity"></activity>
+        <activity android:name=".ui.offer_history.OfferHistoryActivity" />
+        <activity android:name=".ui.new_payment.NewPaymentActivity" />
+        <activity android:name=".ui.new_offers.NewOfferActivity" />
         <activity android:name=".ui.home.HomeActivity" />
     </application>
 
