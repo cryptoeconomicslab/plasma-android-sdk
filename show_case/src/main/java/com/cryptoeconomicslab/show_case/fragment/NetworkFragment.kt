@@ -26,7 +26,7 @@ class NetworkFragment : Fragment() {
         val client = PlasmaClient()
 
         view.findViewById<Button>(R.id.add_button).setOnClickListener {
-            client.listen_client()
+            // do something
         }
 
         return view
