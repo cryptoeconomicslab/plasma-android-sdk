@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">demo-payment-usecase</string>
+
+    <!-- screen name -->
+    <string name="screen__wallet_name">Your Plasma Wallet</string>
+    <string name="screen__payment_name">Payments</string>
+    <string name="screen__new_payment_name">New Payment</string>
+    <string name="screen__offer_name">Offers</string>
+    <string name="screen__new_offer_name">New Offers</string>
+    <string name="screen__qr_name">Scan QR Code</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
