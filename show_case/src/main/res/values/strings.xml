@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">show-case</string>
+
+    <!-- menu -->
+    <string name="menu_hello_world">hello world</string>
+    <string name="menu_db_sample">db sample</string>
+    <string name="menu_network_sample">network sample</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

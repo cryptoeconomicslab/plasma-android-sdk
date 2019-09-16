@@ -103,7 +103,6 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
     let to = CString::from(CStr::from_ptr(env.get_string(j_to).unwrap().as_ptr()));
 
     android_logger::init_once(Config::default().with_min_level(Level::Trace));
-
     let client = PlasmaClient::<CoreDbMemoryImpl>::new(
         Address::zero(),
         endpoint.to_str().unwrap().to_string(),

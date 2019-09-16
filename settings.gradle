@@ -1,1 +1,1 @@
-include ':demo-hello-world', ':plasma_android_sdk', ':demo-payment-usecase'
+include ':plasma_android_sdk', ':demo-payment-usecase', ':show_case'
