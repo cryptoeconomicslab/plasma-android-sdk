@@ -5,7 +5,7 @@ use std::ffi::{CStr, CString};
 use std::thread;
 
 use jni::objects::{JObject, JString, JValue};
-use jni::sys::{jstring, jint};
+use jni::sys::{jint, jstring};
 use jni::JNIEnv;
 
 #[macro_use]
@@ -14,12 +14,12 @@ extern crate android_logger;
 
 use android_logger::{Config, FilterBuilder};
 use bytes::Bytes;
-use log::Level;
 use ethereum_types::Address;
-use plasma_core::data_structure::Range;
-use pubsub_messaging::{connect, ClientHandler as Handler, Message, Sender};
+use log::Level;
 use plasma_clients::plasma::PlasmaClient;
+use plasma_core::data_structure::Range;
 use plasma_db::impls::kvs::CoreDbMemoryImpl;
+use pubsub_messaging::{connect, ClientHandler as Handler, Message, Sender};
 
 #[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_1world_HelloWorld_hello(
@@ -97,24 +97,23 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
     j_to: JString,
 ) -> jstring {
     let endpoint = CString::from(CStr::from_ptr(env.get_string(j_endpoint).unwrap().as_ptr()));
-    let secretkey = CString::from(CStr::from_ptr(env.get_string(j_secretkey).unwrap().as_ptr()));
+    let secretkey = CString::from(CStr::from_ptr(
+        env.get_string(j_secretkey).unwrap().as_ptr(),
+    ));
     let to = CString::from(CStr::from_ptr(env.get_string(j_to).unwrap().as_ptr()));
 
     android_logger::init_once(Config::default().with_min_level(Level::Trace));
-     
     let client = PlasmaClient::<CoreDbMemoryImpl>::new(
         Address::zero(),
         endpoint.to_str().unwrap().to_string(),
         secretkey.to_str().unwrap(),
     );
 
-    let tx = client.create_transaction(Range::new(j_start as u64, j_end as u64), Bytes::from(hex::decode(
-        to.to_str().unwrap()
-    ).unwrap()));
+    let tx = client.create_transaction(
+        Range::new(j_start as u64, j_end as u64),
+        Bytes::from(hex::decode(to.to_str().unwrap()).unwrap()),
+    );
     client.send_transaction(tx);
 
-    env.new_string(format!("Sended!"))
-        .unwrap()
-        .into_inner()
+    env.new_string(format!("Sended!")).unwrap().into_inner()
 }
- 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/nav_hello_world"
+            android:title="@string/menu_hello_world"/>
+    <item
+            android:id="@+id/nav_db_sample"
+            android:title="@string/menu_db_sample"/>
+
+    <item
+            android:id="@+id/nav_network_sample"
+            android:title="@string/menu_network_sample"/>
+</menu>
