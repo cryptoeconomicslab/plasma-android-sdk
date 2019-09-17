@@ -8,7 +8,7 @@ import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
  * Address is Null when counter party is not yet confirmed.
  */
 data class CounterParty(
-    val tokenId: String,
+    val tokenId: Int,
     val amount: Int,
     val address: Address?
 )
