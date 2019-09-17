@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- text size -->
+    <dimen name="text_size__display1">34sp</dimen>
+    <dimen name="text_size__display2">45sp</dimen>
+    <dimen name="text_size__display3">56sp</dimen>
+    <dimen name="text_size__display4">112sp</dimen>
+    <dimen name="text_size__title">21sp</dimen>
+    <dimen name="text_size__body">15sp</dimen>
+    <dimen name="text_size__caption">13sp</dimen>
+    <dimen name="text_size__headline">24sp</dimen>
+    <dimen name="text_size__subheading">17sp</dimen>
+
+    <!-- margin -->
+    <dimen name="margin_size__4">4dp</dimen>
+    <dimen name="margin_size__8">8dp</dimen>
+    <dimen name="margin_size__16">16dp</dimen>
+    <dimen name="margin_size__32">32dp</dimen>
+
+    <!-- padding -->
+    <dimen name="padding_size__4">4dp</dimen>
+    <dimen name="padding_size__8">8dp</dimen>
+    <dimen name="padding_size__16">16dp</dimen>
+    <dimen name="padding_size__32">32dp</dimen>
+
+    <dimen name="button_size__height">60dp</dimen>
+</resources>

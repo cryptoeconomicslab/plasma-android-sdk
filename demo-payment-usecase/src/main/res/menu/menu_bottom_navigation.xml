@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/menu_wallet"
+            android:icon="@drawable/ic_menu_wallet"
+            android:title="Wallet" />
+    <item
+            android:id="@+id/menu_payment"
+            android:icon="@drawable/ic_menu_payment"
+            android:title="Payment" />
+    <item
+            android:id="@+id/menu_exchange"
+            android:icon="@drawable/ic_menu_exchange"
+            android:title="Exchange" />
+</menu>

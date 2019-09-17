@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">demo-payment-usecase</string>
+    <string name="app_name">ypw</string>
+
+    <!-- screen name -->
+    <string name="screen__wallet_name">Your Plasma Wallet</string>
+    <string name="screen__payment_name">Payments</string>
+    <string name="screen__new_payment_name">New Payment</string>
+    <string name="screen__offer_name">Offers</string>
+    <string name="screen__new_offer_name">New Offers</string>
+    <string name="screen__qr_name">Scan QR Code</string>
+    <string name="screen__offer_history_name">Histories</string>
+
+    <!-- screen specific label -->
+    <string name="login__sub_title_text">Welcome to Plasma Wallet\nLet\'s get started</string>
+    <string name="login__button_label">Create New Wallet</string>
+    <string name="payment__button_label">Add Payment</string>
+    <string name="offer__button_label">Add Offer</string>
+
 </resources>

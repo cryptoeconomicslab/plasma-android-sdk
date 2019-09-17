@@ -3,7 +3,7 @@
 buildscript {
     // using latest version will failed to load other standard packages
     // @see https://youtrack.jetbrains.com/issue/KT-30784
-    ext.kotlin_version = '1.3.21'
+    ext.kotlin_version = '1.3.50'
     repositories {
         google()
         jcenter()
