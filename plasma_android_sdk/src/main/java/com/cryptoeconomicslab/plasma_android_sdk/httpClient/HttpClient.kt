@@ -125,6 +125,7 @@ class HttpClient : HttpClientContract {
             body?.let {
                 Result.success(it)
             }
+            Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
             Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
         }
@@ -171,6 +172,7 @@ class HttpClient : HttpClientContract {
             body?.let {
                 Result.success(it)
             }
+            Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
             Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
 
@@ -187,6 +189,7 @@ class HttpClient : HttpClientContract {
             body?.let {
                 Result.success(it)
             }
+            Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
             Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
         }
