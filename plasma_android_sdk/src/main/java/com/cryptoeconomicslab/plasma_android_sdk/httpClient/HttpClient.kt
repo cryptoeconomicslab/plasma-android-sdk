@@ -2,6 +2,7 @@ package com.cryptoeconomicslab.plasma_android_sdk.httpClient
 
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.*
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.error.ApplicationError
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -41,12 +42,13 @@ val httpBuilder: OkHttpClient.Builder
 
 internal fun <T> create(serviceClass: Class<T>): T {
     val gson = GsonBuilder()
+        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .serializeNulls()
         .create()
 
     retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl("http://127.0.0.1/")
+        .baseUrl("http://127.0.0.1:7777/")
         .client(httpBuilder.build())
         .build()
 
@@ -64,7 +66,7 @@ class HttpClient : HttpClientContract {
 
     // General
     // TODO: check if error handling is in right way.
-    override fun getBalance(address: Address): Result<Balance> = try {
+    override fun getBalance(address: Address): Result<List<Balance>> = try {
         val response = instance.getBalance(address).execute()
         val body = response.body()
         if (response.isSuccessful) {
@@ -79,8 +81,8 @@ class HttpClient : HttpClientContract {
         Result.failure(InternalError("Internal Error"))
     }
 
-    override fun createAccount(password: String): Result<Account> = try {
-        val response = instance.createAccount(password).execute()
+    override fun createAccount(): Result<Account> = try {
+        val response = instance.createAccount().execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
@@ -114,12 +116,16 @@ class HttpClient : HttpClientContract {
     override fun sendPayment(
         from: Address,
         amount: Int,
-        tokenId: String,
+        tokenId: Int,
         to: Address
-    ): Result<Unit> = try {
+    ): Result<Payment> = try {
         val response = instance.sendPayment(from, amount, tokenId, to).execute()
+        val body = response.body()
         if (response.isSuccessful) {
-            Result.success(Unit)
+            body?.let {
+                Result.success(it)
+            }
+            Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
             Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
         }
@@ -131,7 +137,7 @@ class HttpClient : HttpClientContract {
     override fun getExchangeOffers(): Result<List<ExchangeOffer>> = try {
         val response = instance.getExchangeOffers().execute()
         val body = response.body()
-        if (response.isSuccessful()) {
+        if (response.isSuccessful) {
             body?.let {
                 Result.success(it)
             }
@@ -159,11 +165,14 @@ class HttpClient : HttpClientContract {
     }
 
     // status: 201, error: 500
-    override fun sendExchange(from: Address, exchangeId: Int): Result<Unit> = try {
+    override fun sendExchange(from: Address, exchangeId: Int): Result<Exchange> = try {
         val response = instance.sendExchange(from, exchangeId).execute()
         val body = response.body()
         if (response.isSuccessful) {
-            Result.success(Unit)
+            body?.let {
+                Result.success(it)
+            }
+            Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
             Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
 
@@ -173,11 +182,14 @@ class HttpClient : HttpClientContract {
     }
 
     // status: 201, error: 500
-    override fun createNewExchangeOffer(from: Address, offer: ExchangeOffer): Result<Unit> = try {
-        val response = instance.createNewExchangeOffer(from, offer).execute()
+    override fun createExchangeOffer(from: Address, offer: ExchangeOffer): Result<NewOffer> = try {
+        val response = instance.createExchangeOffer(from, offer).execute()
         val body = response.body()
         if (response.isSuccessful) {
-            Result.success(Unit)
+            body?.let {
+                Result.success(it)
+            }
+            Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
             Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
         }

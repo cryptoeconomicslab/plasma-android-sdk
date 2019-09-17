@@ -9,29 +9,29 @@ typealias Address = String
 internal interface ApiService {
     // General
     @GET("get_balance")
-    fun getBalance(address: Address): Call<Balance>
+    fun getBalance(@Body address: Address): Call<List<Balance>>
     @POST("create_account")
-    fun createAccount(@Body password: String): Call<Account>
+    fun createAccount(): Call<Account>
 
     // Payment
     @GET("get_payment_history")
-    fun getPaymentHistory(address: Address): Call<List<PaymentHistory>>
+    fun getPaymentHistory(@Body address: Address): Call<List<PaymentHistory>>
 
     // status: 201, error: 500
     @POST("send_payment")
-    fun sendPayment(@Body from: Address, amount: Int, tokenId: String, to: Address): Call<Unit>
+    fun sendPayment(@Body from: Address, amount: Int, tokenId: Int, to: Address): Call<Payment>
 
     // Exchange
     @GET("get_exchange_offers")
     fun getExchangeOffers(): Call<List<ExchangeOffer>>
     @GET("get_exchange_history")
-    fun getExchangeHistory(address: Address): Call<List<ExchangeHistory>>
+    fun getExchangeHistory(@Body address: Address): Call<List<ExchangeHistory>>
 
     // status: 201, error: 500
     @POST("send_exchange")
-    fun sendExchange(@Body from: Address, exchangeId: Int): Call<Unit>
+    fun sendExchange(@Body from: Address, exchangeId: Int): Call<Exchange>
 
     // status: 201, error: 500
-    @POST("createNewExchangeOffer")
-    fun createNewExchangeOffer(@Body from: Address, offer: ExchangeOffer): Call<Unit>
+    @POST("create_exchange_offer")
+    fun createExchangeOffer(@Body from: Address, offer: ExchangeOffer): Call<NewOffer>
 }

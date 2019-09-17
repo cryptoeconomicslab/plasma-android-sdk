@@ -7,7 +7,7 @@ import java.time.LocalDateTime
  * PaymentHistory data class
  */
 data class PaymentHistory(
-    val type: PaymentHistoryType,
+    val historyType: PaymentHistoryType,
     val amount: Int,
     val address: Address,
     val timestamp: LocalDateTime,
@@ -21,6 +21,6 @@ enum class PaymentHistoryType {
 
 enum class PaymentHistoryStatus {
     CONFIRMED,
-    STATUS,
+    PENDING,
     FAILED,
 }
