@@ -7,4 +7,8 @@ interface OfferRepository {
     fun getOffers(): List<ExchangeOffer>
 
     fun getOfferHistories(): List<ExchangeHistory>
+
+    fun createOffer()
+
+    fun sendExchange()
 }

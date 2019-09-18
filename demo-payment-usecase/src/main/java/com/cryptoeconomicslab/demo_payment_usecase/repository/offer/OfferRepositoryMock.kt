@@ -117,4 +117,10 @@ class OfferRepositoryMock : OfferRepository {
             timestamp = Date()
         )
     )
+
+    override fun createOffer() {
+    }
+
+    override fun sendExchange() {
+    }
 }
