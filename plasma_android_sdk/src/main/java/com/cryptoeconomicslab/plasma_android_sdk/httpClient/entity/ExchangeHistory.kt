@@ -1,6 +1,6 @@
 package com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity
 
-import java.time.LocalDateTime
+import java.util.*
 
 
 /**
@@ -13,7 +13,7 @@ data class ExchangeHistory(
     val amount: Int,
     val status: ExchangeHistoryStatus,
     val counterParty: CounterParty,
-    val timestamp: LocalDateTime
+    val timestamp: Date
 )
 
 enum class ExchangeHistoryType {
