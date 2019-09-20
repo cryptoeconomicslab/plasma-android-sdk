@@ -5,6 +5,8 @@
     <color name="colorAccent">#FFEC7182</color>
     <color name="colorLight">#80FFFFFF</color>
 
+    <color name="colorPrimaryOverlay">#40312934</color>
+
     <color name="textColor">#FFFFFFFF</color>
     <color name="textColorLight">@color/colorLight</color>
 </resources>

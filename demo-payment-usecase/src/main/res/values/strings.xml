@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ypw</string>
 
     <!-- screen name -->
@@ -13,7 +13,20 @@
     <!-- screen specific label -->
     <string name="login__sub_title_text">Welcome to Plasma Wallet\nLet\'s get started</string>
     <string name="login__button_label">Create New Wallet</string>
+
     <string name="payment__button_label">Add Payment</string>
+    <string name="payment__address_label">To (Wallet ID)</string>
+    <string name="payment__amount">Amount</string>
+    <string name="payment__amount_scale">ETH</string>
+    <string name="payment__button_send">Send</string>
+    <string name="payment__dialog_confirm_title">Are you sure?</string>
+    <string name="payment__dialog_confirm_message">Send %1$dETH to %2$s</string>
+    <string name="payment__dialog_confirm_button_positive">SEND</string>
+    <string name="payment__dialog_confirm_button_negative" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="payment__dialog_completed_title">Completed</string>
+    <string name="payment__dialog_completed_message">Sent %1$dETH to %2$s</string>
+    <string name="payment__dialog_completed_button_positive">OK</string>
+
     <string name="offer__button_label">Add Offer</string>
 
 </resources>
