@@ -26,12 +26,12 @@ class ExchangeViewAdapter(private val context: Context, private val items: List<
         holder.apply {
             val exchangeOffer: ExchangeOffer = items[position]
             sourceAmountText.text = context.getString(
-                R.string.offer__amount_text,
+                R.string.exchange__amount_text,
                 exchangeOffer.amount,
                 exchangeOffer.tokenId.toString()
             )
             targetAmountText.text = context.getString(
-                R.string.offer__amount_text,
+                R.string.exchange__amount_text,
                 exchangeOffer.counterParty.amount,
                 exchangeOffer.counterParty.tokenId.toString()
             )

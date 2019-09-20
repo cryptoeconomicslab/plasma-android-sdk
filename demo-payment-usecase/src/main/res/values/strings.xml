@@ -27,7 +27,13 @@
     <string name="payment__dialog_completed_message">Sent %1$dETH to %2$s</string>
     <string name="payment__dialog_completed_button_positive">OK</string>
 
-    <string name="offer__button_label">Add Offer</string>
-    <string name="offer__amount_text">%1$d%2$s</string>
+    <string name="exchange__button_label">Add Offer</string>
+    <string name="exchange__amount_text">%1$d%2$s</string>
+    <string name="exchange__dialog_confirm_title">Are you sure?</string>
+    <string name="exchange__dialog_confirm_message">Exchange %1$d%2$s to %3$d%4$s %5$s</string>
+    <string name="exchange__dialog_confirm_button_positive">EXCHANGE</string>
+    <string name="exchange__dialog_confirm_button_negative" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="exchange__dialog_completed_message">Completed</string>
+    <string name="exchange__dialog_completed_button_positive">OK</string>
 
 </resources>
