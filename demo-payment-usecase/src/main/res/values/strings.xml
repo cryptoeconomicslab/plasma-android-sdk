@@ -15,5 +15,6 @@
     <string name="login__button_label">Create New Wallet</string>
     <string name="payment__button_label">Add Payment</string>
     <string name="offer__button_label">Add Offer</string>
+    <string name="offer__amount_text">%1$d%2$s</string>
 
 </resources>
