@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.cryptoeconomicslab.demo_payment_usecase.R
 
-class NewPaymentActivity : AppCompatActivity() {
+class NewPaymentActivity : AppCompatActivity(), Transition {
 
     companion object {
         fun createIntent(context: Context): Intent = Intent(context, NewPaymentActivity::class.java)
@@ -19,6 +19,10 @@ class NewPaymentActivity : AppCompatActivity() {
 
         setTitle(R.string.screen__new_payment_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, NewPaymentFragment.getFragment(this))
+            .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
