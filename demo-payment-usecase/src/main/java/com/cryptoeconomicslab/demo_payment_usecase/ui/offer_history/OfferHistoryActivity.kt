@@ -20,6 +20,10 @@ class OfferHistoryActivity : AppCompatActivity() {
 
         setTitle(R.string.screen__offer_history_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, OfferHistoryFragment.getFragment())
+            .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -36,4 +36,6 @@
     <string name="exchange__dialog_completed_message">Completed</string>
     <string name="exchange__dialog_completed_button_positive">OK</string>
 
+    <string name="offer_history__amount_with_scale">%1$d%2$s</string>
+
 </resources>

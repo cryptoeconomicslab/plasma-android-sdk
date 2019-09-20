@@ -23,4 +23,5 @@ enum class ExchangeHistoryType {
 enum class ExchangeHistoryStatus {
     CONFIRMED,
     PENDING,
+    FAILED,
 }

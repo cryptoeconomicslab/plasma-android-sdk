@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size__8"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size__8"
+        tools:background="@color/colorPrimary">∂
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_size__8"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/source_amount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_size__title"
+                    tools:text="12 ETH" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_size__4"
+                    android:layout_marginEnd="@dimen/margin_size__4"
+                    android:src="@drawable/ic_exchange" />
+
+            <TextView
+                    android:id="@+id/target_amount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_size__title"
+                    tools:text="12 DAI" />
+
+            <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_size__8"
+                    android:layout_marginEnd="@dimen/margin_size__8"
+                    android:background="@drawable/label_status_confirmed_background"
+                    android:paddingStart="@dimen/padding_size__16"
+                    android:paddingTop="@dimen/padding_size__4"
+                    android:paddingEnd="@dimen/padding_size__16"
+                    android:paddingBottom="@dimen/padding_size__4"
+                    android:textColor="@color/textColor"
+                    tools:text="confirmed" />
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size__body"
+                tools:text="0x627306090a...78aa8bef57" />
+
+        <TextView
+                android:id="@+id/timestamp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColorLight"
+                tools:text="2019/07/21 12:22:11" />
+
+    </LinearLayout>
+
+</LinearLayout>
