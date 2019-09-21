@@ -26,6 +26,7 @@
     <string name="payment__dialog_completed_title">Completed</string>
     <string name="payment__dialog_completed_message">Sent %1$dETH to %2$s</string>
     <string name="payment__dialog_completed_button_positive">OK</string>
+    <string name="payment__text_hint">0</string>
 
     <string name="exchange__button_label">Add Offer</string>
     <string name="exchange__amount_text">%1$d%2$s</string>
@@ -35,6 +36,14 @@
     <string name="exchange__dialog_confirm_button_negative" tools:ignore="ButtonCase">CANCEL</string>
     <string name="exchange__dialog_completed_message">Completed</string>
     <string name="exchange__dialog_completed_button_positive">OK</string>
+
+    <string name="new_offer__target_label">YOU</string>
+    <string name="new_offer__text_hint">0</string>
+    <string name="new_offer__source_label">WITH</string>
+    <string name="new_offer__button_label" tools:ignore="ButtonCase">New Offer</string>
+    <string name="new_offer__dialog_completed_title">Completed</string>
+    <string name="new_offer__dialog_completed_message">%1$.1f %2$s with %3$.1f %4$s</string>
+    <string name="new_offer__dialog_completed_button_positive">OK</string>
 
     <string name="offer_history__amount_with_scale">%1$d%2$s</string>
 
