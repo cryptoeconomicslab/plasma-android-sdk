@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size__8"
+        android:background="@drawable/cell_exchnage_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size__8">
+
+    <ImageView
+            android:id="@+id/type_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/image_exchange_background"
+            android:padding="@dimen/margin_size__8"
+            android:src="@drawable/ic_exchange" />
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_size__8"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/source_amount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_size__title"
+                    tools:text="12 ETH" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_size__4"
+                    android:layout_marginEnd="@dimen/margin_size__4"
+                    android:src="@drawable/ic_exchange" />
+
+            <TextView
+                    android:id="@+id/target_amount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/text_size__title"
+                    tools:text="12 DAI" />
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size__body"
+                tools:text="0x627306090a...78aa8bef57" />
+
+    </LinearLayout>
+
+</LinearLayout>
