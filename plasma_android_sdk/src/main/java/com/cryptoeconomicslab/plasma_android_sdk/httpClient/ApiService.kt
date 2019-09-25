@@ -6,7 +6,16 @@ import retrofit2.http.*
 
 typealias Address = String
 
-
+/**
+ * SendPaymentRequestBody data class
+ */
+data class SendPaymentRequestBody(
+    val session: String,
+    val from: Address,
+    val to: Address,
+    val amount: Int,
+    val tokenAddress: Address
+)
 
 internal interface ApiService {
     // General
@@ -21,7 +30,7 @@ internal interface ApiService {
 
     // status: 201, error: 500
     @POST("send_payment")
-    fun sendPayment(@Body from: Address, amount: Int, tokenId: Int, to: Address): Call<Payment>
+    fun sendPayment(@Body body: SendPaymentRequestBody): Call<Payment>
 
     // Exchange
     @GET("get_exchange_offers")

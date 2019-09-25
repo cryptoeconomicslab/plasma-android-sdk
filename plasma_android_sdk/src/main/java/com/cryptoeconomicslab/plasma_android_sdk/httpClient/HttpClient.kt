@@ -134,13 +134,13 @@ class HttpClient  {
     }
 
     // status: 201, error: 500
-    fun sendPayment(
-        from: Address,
-        amount: Int,
-        tokenId: Int,
-        to: Address
-    ): Result<Payment> = try {
-        val response = instance.sendPayment(from, amount, tokenId, to).execute()
+    fun sendPayment(to: Address, amount: Int, tokenAddress: Address): Result<Payment> = try {
+        val response = instance.sendPayment(SendPaymentRequestBody(
+            session = session!!,
+            from = address!!,
+            to = to,
+            amount = amount,
+            tokenAddress = tokenAddress)).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
