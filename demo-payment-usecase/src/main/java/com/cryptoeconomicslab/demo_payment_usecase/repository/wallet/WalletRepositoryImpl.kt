@@ -1,7 +1,6 @@
 package com.cryptoeconomicslab.demo_payment_usecase.repository.wallet
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.HttpClient

@@ -77,7 +77,7 @@ class HttpClient  {
             Result.failure<List<Balance>>(ApplicationError.SessionNotProvided("session not provided"))
         }
 
-        val response = instance.getBalance(address!!, session!!).execute()
+        val response = instance.getBalance(session!!).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {

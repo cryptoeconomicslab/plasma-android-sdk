@@ -11,13 +11,13 @@ typealias Address = String
 internal interface ApiService {
     // General
     @GET("get_balance")
-    fun getBalance(@Body address: Address, @Body session: String): Call<List<Balance>>
+    fun getBalance(@Query("session") session: String): Call<List<Balance>>
     @POST("create_account")
     fun createAccount(): Call<Account>
 
     // Payment
     @GET("get_payment_history")
-    fun getPaymentHistory(@Body address: Address): Call<List<PaymentHistory>>
+    fun getPaymentHistory(@Query("session") session: String): Call<List<PaymentHistory>>
 
     // status: 201, error: 500
     @POST("send_payment")
@@ -27,7 +27,7 @@ internal interface ApiService {
     @GET("get_exchange_offers")
     fun getExchangeOffers(): Call<List<ExchangeOffer>>
     @GET("get_exchange_history")
-    fun getExchangeHistory(@Body address: Address): Call<List<ExchangeHistory>>
+    fun getExchangeHistory(@Query("session") session: String): Call<List<ExchangeHistory>>
 
     // status: 201, error: 500
     @POST("send_exchange")
