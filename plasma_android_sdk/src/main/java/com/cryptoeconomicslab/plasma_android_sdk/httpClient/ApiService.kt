@@ -6,10 +6,12 @@ import retrofit2.http.*
 
 typealias Address = String
 
+
+
 internal interface ApiService {
     // General
     @GET("get_balance")
-    fun getBalance(@Body address: Address): Call<List<Balance>>
+    fun getBalance(@Body address: Address, @Body session: String): Call<List<Balance>>
     @POST("create_account")
     fun createAccount(): Call<Account>
 

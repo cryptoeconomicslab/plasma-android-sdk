@@ -2,12 +2,14 @@ package com.cryptoeconomicslab.demo_payment_usecase.ui.login
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.cryptoeconomicslab.demo_payment_usecase.R
+import com.cryptoeconomicslab.demo_payment_usecase.repository.wallet.WalletRepositoryImpl
 
 /**
  * A simple [Fragment] subclass.
@@ -26,9 +28,16 @@ class LoginFragment(private val transition: Transition) : Fragment() {
 
         view.findViewById<Button>(R.id.create_wallet_button).apply {
             setOnClickListener {
-                transition.moveToHome()
-                transition.finishScreen()
-            }
+                val repository = WalletRepositoryImpl(context)
+                val res = repository.createAccount()
+                Log.d("LOGIN", res.toString())
+                repository.createAccount()?.let {
+                    Log.d("LOGIN", "SUCCESS FETCHING")
+                    transition.moveToHome()
+                    transition.finishScreen()
+                }
+                // TODO: implement fail to create account message
+           }
         }
 
         return view

@@ -1,5 +1,6 @@
 package com.cryptoeconomicslab.plasma_android_sdk.httpClient
 
+import android.util.Log
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.*
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.error.ApplicationError
 import com.google.gson.FieldNamingPolicy
@@ -17,8 +18,11 @@ lateinit var retrofit: Retrofit
 
 val httpBuilder: OkHttpClient.Builder
     get() {
-        // create http client
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
         val httpClient = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(Interceptor(fun(chain: Interceptor.Chain): Response {
                 val original = chain.request()
 
@@ -32,11 +36,6 @@ val httpBuilder: OkHttpClient.Builder
             }))
             .readTimeout(30, TimeUnit.SECONDS)
 
-        // log interceptor
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        httpClient.addInterceptor(loggingInterceptor)
-
         return httpClient
     }
 
@@ -48,7 +47,7 @@ internal fun <T> create(serviceClass: Class<T>): T {
 
     retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl("http://127.0.0.1:7777/")
+        .baseUrl("http://10.0.2.2:7777/")
         .client(httpBuilder.build())
         .build()
 
@@ -58,20 +57,31 @@ internal fun <T> create(serviceClass: Class<T>): T {
 /**
  * HttpClient Class
  */
-class HttpClient : HttpClientContract {
+class HttpClient  {
     companion object {
         // TODO: get API endpoint from environment variable
         private val instance: ApiService = create(ApiService::class.java)
+        private var session: String? = null
+        private var address: Address? = null
+    }
+
+    fun loadSession(_session: String, _address: Address) {
+        session = _session
+        address = _address
     }
 
     // General
     // TODO: check if error handling is in right way.
-    override fun getBalance(address: Address): Result<List<Balance>> = try {
-        val response = instance.getBalance(address).execute()
+    fun getBalance(): Result<List<Balance>> = try {
+        if (session.isNullOrEmpty() || address.isNullOrEmpty()) {
+            Result.failure<List<Balance>>(ApplicationError.SessionNotProvided("session not provided"))
+        }
+
+        val response = instance.getBalance(address!!, session!!).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
@@ -81,28 +91,35 @@ class HttpClient : HttpClientContract {
         Result.failure(InternalError("Internal Error"))
     }
 
-    override fun createAccount(): Result<Account> = try {
+    fun createAccount(): Result<Account> = try {
         val response = instance.createAccount().execute()
         val body = response.body()
+        Log.d("request createAccount", body.toString())
+
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                session = it.session
+                address = it.address
+
+                return Result.success(it)
             }
-            Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
-        } else {
-            Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
         }
+        Result.failure(ApplicationError.InternalError(response.errorBody().toString()))
     } catch (e: IOException) {
         Result.failure(ApplicationError.InternalError("Internal Error: calling create_account"))
     }
 
+    fun getAddress(): Address? {
+        return address
+    }
+
     // Payment
-    override fun getPaymentHistory(address: Address): Result<List<PaymentHistory>> = try {
+    fun getPaymentHistory(address: Address): Result<List<PaymentHistory>> = try {
         val response = instance.getPaymentHistory(address).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
@@ -113,7 +130,7 @@ class HttpClient : HttpClientContract {
     }
 
     // status: 201, error: 500
-    override fun sendPayment(
+    fun sendPayment(
         from: Address,
         amount: Int,
         tokenId: Int,
@@ -123,7 +140,7 @@ class HttpClient : HttpClientContract {
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
@@ -134,12 +151,12 @@ class HttpClient : HttpClientContract {
     }
 
     // Exchange
-    override fun getExchangeOffers(): Result<List<ExchangeOffer>> = try {
+    fun getExchangeOffers(): Result<List<ExchangeOffer>> = try {
         val response = instance.getExchangeOffers().execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
@@ -149,12 +166,12 @@ class HttpClient : HttpClientContract {
         Result.failure(ApplicationError.InternalError("Internal Error: calling get_exchange_offers"))
     }
 
-    override fun getExchangeHistory(address: Address): Result<List<ExchangeHistory>> = try {
+    fun getExchangeHistory(address: Address): Result<List<ExchangeHistory>> = try {
         val response = instance.getExchangeHistory(address).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
@@ -165,12 +182,12 @@ class HttpClient : HttpClientContract {
     }
 
     // status: 201, error: 500
-    override fun sendExchange(from: Address, exchangeId: Int): Result<Exchange> = try {
+    fun sendExchange(from: Address, exchangeId: Int): Result<Exchange> = try {
         val response = instance.sendExchange(from, exchangeId).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {
@@ -182,12 +199,12 @@ class HttpClient : HttpClientContract {
     }
 
     // status: 201, error: 500
-    override fun createExchangeOffer(from: Address, offer: ExchangeOffer): Result<NewOffer> = try {
+    fun createExchangeOffer(from: Address, offer: ExchangeOffer): Result<NewOffer> = try {
         val response = instance.createExchangeOffer(from, offer).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
-                Result.success(it)
+                return Result.success(it)
             }
             Result.failure(ApplicationError.NotFound(response.errorBody().toString()))
         } else {

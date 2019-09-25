@@ -7,5 +7,5 @@ import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
  */
 data class Account(
     val address: Address,
-    val sessionKey: String
+    val session: String
 )
