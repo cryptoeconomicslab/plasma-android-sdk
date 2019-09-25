@@ -114,8 +114,12 @@ class HttpClient  {
     }
 
     // Payment
-    fun getPaymentHistory(address: Address): Result<List<PaymentHistory>> = try {
-        val response = instance.getPaymentHistory(address).execute()
+    fun getPaymentHistory(): Result<List<PaymentHistory>> = try {
+        if (session.isNullOrEmpty() || address.isNullOrEmpty()) {
+            Result.failure<List<PaymentHistory>>(ApplicationError.SessionNotProvided("session not provided"))
+        }
+
+        val response = instance.getPaymentHistory(session!!).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {

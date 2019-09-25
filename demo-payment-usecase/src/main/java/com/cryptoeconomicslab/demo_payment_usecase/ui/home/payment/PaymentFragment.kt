@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cryptoeconomicslab.demo_payment_usecase.R
-import com.cryptoeconomicslab.demo_payment_usecase.repository.payment.PaymentRepositoryMock
+import com.cryptoeconomicslab.demo_payment_usecase.repository.payment.PaymentRepositoryImpl
 import com.cryptoeconomicslab.demo_payment_usecase.ui.home.ActionBarCallback
 import com.cryptoeconomicslab.demo_payment_usecase.ui.home.Transition
 
@@ -36,7 +36,7 @@ class PaymentFragment(
         actionBarCallback.setActionBarTitle(getString(R.string.screen__payment_name))
         actionBarCallback.clearActionBarMenu()
 
-        val repository = PaymentRepositoryMock()
+        val repository = PaymentRepositoryImpl()
 
         val view = inflater.inflate(R.layout.fragment_payment, container, false)
 

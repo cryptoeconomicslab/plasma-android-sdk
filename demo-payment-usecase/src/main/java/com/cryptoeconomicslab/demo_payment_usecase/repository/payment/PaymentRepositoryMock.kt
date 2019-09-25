@@ -13,6 +13,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.PENDING
         ),
         PaymentHistory(
@@ -20,6 +21,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -27,6 +29,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.FAILED
         ),
         PaymentHistory(
@@ -34,6 +37,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.PENDING
         ),
         PaymentHistory(
@@ -41,6 +45,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -48,6 +53,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -55,6 +61,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -62,6 +69,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -69,6 +77,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         )
     )
