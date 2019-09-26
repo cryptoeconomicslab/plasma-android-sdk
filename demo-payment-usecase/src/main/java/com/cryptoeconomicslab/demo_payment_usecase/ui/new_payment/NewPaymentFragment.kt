@@ -12,6 +12,8 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.cryptoeconomicslab.demo_payment_usecase.R
+import com.cryptoeconomicslab.demo_payment_usecase.repository.payment.PaymentRepositoryImpl
+import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.Payment
 
 /**
  * A simple [Fragment] subclass.
@@ -76,6 +78,19 @@ class NewPaymentFragment(val transition: Transition) : Fragment() {
             .setPositiveButton(getString(R.string.payment__dialog_confirm_button_positive)) { dialog, which ->
                 progressBar.visibility = View.VISIBLE
                 overlayView.visibility = View.VISIBLE
+                val repository = PaymentRepositoryImpl()
+                val res = repository.sendPayment(
+                    addressText.text.toString(),
+                    amountText.text.toString().toInt(),
+                    "0x0000000000000000000000000000000000000001" // TODO: fix later
+                )
+                if (res != null) {
+                    showCompletedDialog(context,
+                        res.amount,
+                        res.to
+                    )
+                }
+
             }
             .setNegativeButton(getString(R.string.payment__dialog_confirm_button_negative)) { dialog, which ->
                 // do nothing

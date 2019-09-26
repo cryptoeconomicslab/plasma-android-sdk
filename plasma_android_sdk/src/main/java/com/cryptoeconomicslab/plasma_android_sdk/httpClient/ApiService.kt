@@ -6,26 +6,37 @@ import retrofit2.http.*
 
 typealias Address = String
 
+/**
+ * SendPaymentRequestBody data class
+ */
+data class SendPaymentRequestBody(
+    val session: String,
+    val from: Address,
+    val to: Address,
+    val amount: Int,
+    val tokenAddress: Address
+)
+
 internal interface ApiService {
     // General
     @GET("get_balance")
-    fun getBalance(@Body address: Address): Call<List<Balance>>
+    fun getBalance(@Query("session") session: String): Call<List<Balance>>
     @POST("create_account")
     fun createAccount(): Call<Account>
 
     // Payment
     @GET("get_payment_history")
-    fun getPaymentHistory(@Body address: Address): Call<List<PaymentHistory>>
+    fun getPaymentHistory(@Query("session") session: String): Call<List<PaymentHistory>>
 
     // status: 201, error: 500
     @POST("send_payment")
-    fun sendPayment(@Body from: Address, amount: Int, tokenId: Int, to: Address): Call<Payment>
+    fun sendPayment(@Body body: SendPaymentRequestBody): Call<Payment>
 
     // Exchange
     @GET("get_exchange_offers")
     fun getExchangeOffers(): Call<List<ExchangeOffer>>
     @GET("get_exchange_history")
-    fun getExchangeHistory(@Body address: Address): Call<List<ExchangeHistory>>
+    fun getExchangeHistory(@Query("session") session: String): Call<List<ExchangeHistory>>
 
     // status: 201, error: 500
     @POST("send_exchange")

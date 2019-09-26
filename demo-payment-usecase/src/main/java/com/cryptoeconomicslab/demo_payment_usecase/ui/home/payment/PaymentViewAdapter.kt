@@ -36,7 +36,7 @@ class PaymentViewAdapter(private val context: Context, private val items: List<P
                     typeIcon.background = context.getDrawable(R.drawable.image_recieve_background)
                 }
             }
-            amountText.text = paymentHistory.amount.toString() + "ETH"
+            amountText.text = paymentHistory.amount.toString() + paymentHistory.tokenName
 
             when (paymentHistory.status) {
                 PaymentHistoryStatus.CONFIRMED -> {

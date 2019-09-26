@@ -15,4 +15,9 @@ class ApplicationError {
      * NotFound Exception of Client
      */
     class NotFound(message:String): Exception(message)
+
+    /**
+     * Session expired
+     */
+    class SessionNotProvided(message: String): Exception(message)
 }

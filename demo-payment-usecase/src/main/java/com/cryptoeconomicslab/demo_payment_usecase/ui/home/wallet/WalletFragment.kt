@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cryptoeconomicslab.demo_payment_usecase.R
-import com.cryptoeconomicslab.demo_payment_usecase.repository.wallet.WalletRepositoryMock
+import com.cryptoeconomicslab.demo_payment_usecase.repository.wallet.WalletRepositoryImpl
 import com.cryptoeconomicslab.demo_payment_usecase.ui.home.ActionBarCallback
 
 /**
@@ -28,7 +28,7 @@ class WalletFragment(private val actionBarCallback: ActionBarCallback) : Fragmen
         actionBarCallback.setActionBarTitle(getString(R.string.screen__wallet_name))
         actionBarCallback.clearActionBarMenu()
 
-        val repository = WalletRepositoryMock()
+        val repository = WalletRepositoryImpl(requireContext())
 
         val view = inflater.inflate(R.layout.fragment_wallet, container, false)
 

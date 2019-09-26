@@ -11,7 +11,8 @@ data class PaymentHistory(
     val amount: Int,
     val address: Address,
     val timestamp: Date,
-    val status: PaymentHistoryStatus
+    val status: PaymentHistoryStatus,
+    val tokenName: String
 )
 
 enum class PaymentHistoryType {

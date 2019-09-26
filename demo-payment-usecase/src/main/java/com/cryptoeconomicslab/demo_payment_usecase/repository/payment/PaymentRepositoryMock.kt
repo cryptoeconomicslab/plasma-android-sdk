@@ -1,5 +1,6 @@
 package com.cryptoeconomicslab.demo_payment_usecase.repository.payment
 
+import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.Payment
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.PaymentHistory
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.PaymentHistoryStatus
@@ -13,6 +14,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.PENDING
         ),
         PaymentHistory(
@@ -20,6 +22,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -27,6 +30,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.FAILED
         ),
         PaymentHistory(
@@ -34,6 +38,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.PENDING
         ),
         PaymentHistory(
@@ -41,6 +46,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -48,6 +54,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -55,6 +62,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -62,6 +70,7 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         ),
         PaymentHistory(
@@ -69,14 +78,15 @@ class PaymentRepositoryMock : PaymentRepository {
             amount = 120,
             address = "0x123456789abcdef123456789",
             timestamp = Date(),
+            tokenName = "ETH",
             status = PaymentHistoryStatus.CONFIRMED
         )
     )
 
-    override fun sendPayment(): Payment = Payment(
-        to = "0x123456789abcdef123456789",
+    override fun sendPayment(to: Address, amount: Int, tokenAddress: Address): Payment = Payment(
+        to = to,
         from = "0x123456789abcdef123456789",
-        amount = 1,
-        tokenId = 1
+        amount = amount,
+        tokenAddress = tokenAddress
     )
 }

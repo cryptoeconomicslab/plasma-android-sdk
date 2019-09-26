@@ -23,8 +23,8 @@ class WalletViewAdapter(private val context: Context, private val items: List<Ba
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
             amountText.text = items[position].balance.toString()
-            tokenText.text = items[position].tokenId.toString()
-            addressText.text = "0x123456789abcde123456789abcdef"
+            tokenText.text = items[position].tokenName
+            addressText.text = items[position].tokenAddress
         }
     }
 
