@@ -16,10 +16,6 @@ class PaymentRepositoryImpl() : PaymentRepository {
 
     override fun sendPayment(to: Address, amount: Int, tokenAddress: Address): Payment? {
         val result = client.sendPayment(to, amount, tokenAddress)
-        if (result.isSuccess) {
-            return result.getOrNull()!!
-        }
-
-        return null
+        return result.getOrNull()
     }
 }

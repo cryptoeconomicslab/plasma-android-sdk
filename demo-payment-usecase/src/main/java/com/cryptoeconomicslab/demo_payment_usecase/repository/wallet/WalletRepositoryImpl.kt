@@ -36,12 +36,14 @@ class WalletRepositoryImpl(private val context: Context) : WalletRepository {
     override fun createAccount(): Account? {
         val account = client.createAccount()
         if (account.isSuccess) {
-            val a = account.getOrNull()!!
-            val preferences = context.getSharedPreferences("client_data", Context.MODE_PRIVATE)
-            val editor = preferences.edit()
-            editor.putString("session", a.session)
-            editor.putString("address", a.address)
-            editor.apply()
+            val a = account.getOrNull();
+            a?.let {
+                val preferences = context.getSharedPreferences("client_data", Context.MODE_PRIVATE)
+                val editor = preferences.edit()
+                editor.putString("session", it.session)
+                editor.putString("address", it.address)
+                editor.apply()
+            }
             return a
         }
 
