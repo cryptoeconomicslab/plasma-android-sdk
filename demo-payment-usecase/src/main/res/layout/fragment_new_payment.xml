@@ -28,27 +28,22 @@
 
     <EditText
             android:id="@+id/amount_text_field"
+            style="@style/PaymentEditTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:colorControlActivated="@color/colorLight"
-            android:colorControlNormal="@color/colorLight"
-            android:hint="0"
-            android:inputType="number"
             android:paddingStart="@dimen/padding_size__8"
             android:paddingEnd="@dimen/padding_size__8"
-            android:singleLine="true"
-            android:textColor="@color/textColor"
-            android:textColorHint="@color/textColorLight"
             android:textSize="@dimen/text_size__headline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/amount_text" />
+            app:layout_constraintTop_toBottomOf="@id/amount_text"
+            app:theme="@style/PaymentEditTextStyle" />
 
     <TextView
             android:id="@+id/scale_text"
-            android:layout_marginBottom="@dimen/margin_size__8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_size__8"
             android:text="@string/payment__amount_scale"
             android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@id/amount_text_field"
@@ -92,19 +87,16 @@
 
     <EditText
             android:id="@+id/target_text"
+            style="@style/PaymentEditTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_size__32"
             android:layout_marginEnd="@dimen/margin_size__32"
-            android:colorControlActivated="@color/colorLight"
-            android:colorControlNormal="@color/colorLight"
-            android:ellipsize="end"
             android:hint="0x123456789abcdef123456789"
-            android:singleLine="true"
-            android:textColor="@color/textColor"
-            android:textColorHint="@color/textColorLight"
+            android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_bottom_space" />
+            app:layout_constraintTop_toBottomOf="@id/image_bottom_space"
+            app:theme="@style/PaymentEditTextStyle" />
 
     <Button
             android:id="@+id/send_button"
