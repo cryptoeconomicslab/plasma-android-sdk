@@ -1,36 +1,37 @@
 package com.cryptoeconomicslab.demo_payment_usecase.repository.offer
 
+import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.*
 import java.util.*
 
 class OfferRepositoryMock : OfferRepository {
     override fun getOffers(): List<ExchangeOffer> = listOf(
         ExchangeOffer(
-            exchangeId = 0,
-            tokenId = 0,
+            exchangeId = "a",
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             )
         ),
         ExchangeOffer(
-            exchangeId = 0,
-            tokenId = 0,
+            exchangeId = "b",
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             )
         ),
         ExchangeOffer(
-            exchangeId = 0,
-            tokenId = 0,
+            exchangeId = "c",
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             )
@@ -39,78 +40,78 @@ class OfferRepositoryMock : OfferRepository {
 
     override fun getOfferHistories(): List<ExchangeHistory> = listOf(
         ExchangeHistory(
-            exchangeId = 0,
+            exchangeId = "a",
             historyType = ExchangeHistoryType.OFFERED,
             tokenId = 0,
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             ),
             timestamp = Date()
         ),
         ExchangeHistory(
-            exchangeId = 0,
+            exchangeId = "b",
             historyType = ExchangeHistoryType.OFFERED,
             tokenId = 0,
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             ),
             timestamp = Date()
         ),
         ExchangeHistory(
-            exchangeId = 0,
+            exchangeId = "c",
             historyType = ExchangeHistoryType.OFFERED,
             tokenId = 0,
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             ),
             timestamp = Date()
         ),
         ExchangeHistory(
-            exchangeId = 0,
+            exchangeId = "d",
             historyType = ExchangeHistoryType.OFFERED,
             tokenId = 0,
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             ),
             timestamp = Date()
         ),
         ExchangeHistory(
-            exchangeId = 0,
+            exchangeId = "e",
             historyType = ExchangeHistoryType.OFFERED,
             tokenId = 0,
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             ),
             timestamp = Date()
         ),
         ExchangeHistory(
-            exchangeId = 0,
+            exchangeId = "f",
             historyType = ExchangeHistoryType.OFFERED,
             tokenId = 0,
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
-                tokenId = 1,
+                tokenAddress = "0x0000000000000000000000000000000000000001",
                 amount = 120,
                 address = "0x123456789abcdef123456789abcdef"
             ),
@@ -118,7 +119,8 @@ class OfferRepositoryMock : OfferRepository {
         )
     )
 
-    override fun createOffer() {
+    override fun createOffer(tokenAddress: Address, amount: Int, counterTokenAddress: Address, counterAmount: Int): NewOffer? {
+        return null
     }
 
     override fun sendExchange() {

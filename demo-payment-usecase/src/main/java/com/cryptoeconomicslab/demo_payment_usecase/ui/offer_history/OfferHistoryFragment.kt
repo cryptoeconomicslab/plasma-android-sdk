@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cryptoeconomicslab.demo_payment_usecase.R
-import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepositoryMock
+import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepositoryImpl
 
 /**
  * A simple [Fragment] subclass.
@@ -24,7 +24,7 @@ class OfferHistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val repository = OfferRepositoryMock()
+        val repository = OfferRepositoryImpl()
 
         val view = inflater.inflate(R.layout.fragment_offer_history, container, false)
 
