@@ -64,6 +64,7 @@ class ExchangeFragment(
                     override fun onItemClick(item: ExchangeOffer) {
                         showConfirmDialog(
                             context,
+                            item.exchangeId,
                             item.amount,
                             item.counterParty.amount,
                             item.counterParty.address!!
@@ -85,6 +86,7 @@ class ExchangeFragment(
 
     private fun showConfirmDialog(
         context: Context,
+        exchangeId: String,
         sourceAmount: Int,
         targetAmount: Int,
         address: String
@@ -104,6 +106,8 @@ class ExchangeFragment(
             .setPositiveButton(getString(R.string.exchange__dialog_confirm_button_positive)) { dialog, which ->
                 progressBar.visibility = View.VISIBLE
                 overlayView.visibility = View.VISIBLE
+                val repository: OfferRepository = OfferRepositoryImpl()
+                repository.sendExchange(exchangeId)
             }
             .setNegativeButton(getString(R.string.exchange__dialog_confirm_button_negative)) { dialog, which ->
                 // do nothing

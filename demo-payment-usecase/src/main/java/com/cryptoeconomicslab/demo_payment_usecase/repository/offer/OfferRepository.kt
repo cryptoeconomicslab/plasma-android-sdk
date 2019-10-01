@@ -12,5 +12,5 @@ interface OfferRepository {
 
     fun createOffer(tokenAddress: Address, amount: Int, counterTokenAddress: Address, counterAmount: Int): NewOffer?
 
-    fun sendExchange()
+    fun sendExchange(exchangeId: String)
 }

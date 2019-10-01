@@ -34,7 +34,8 @@ class OfferRepositoryImpl : OfferRepository {
         return result.getOrNull()
     }
 
-    override fun sendExchange() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun sendExchange(exchangeId: String) {
+        val result = OfferRepositoryImpl.client.sendExchange(exchangeId)
+        //return result.getOrNull()
     }
 }

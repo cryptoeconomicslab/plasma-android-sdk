@@ -29,6 +29,11 @@ data class CreateExchangeOfferRequest(
     val session: String
 )
 
+data class SendExchangeRequest(
+    val from: Address,
+    val exchangeId: String,
+    val session: String
+)
 
 internal interface ApiService {
     // General
@@ -53,7 +58,7 @@ internal interface ApiService {
 
     // status: 201, error: 500
     @POST("send_exchange")
-    fun sendExchange(@Body from: Address, exchangeId: Int): Call<Exchange>
+    fun sendExchange(@Body body: SendExchangeRequest): Call<Exchange>
 
     // status: 201, error: 500
     @POST("create_exchange_offer")

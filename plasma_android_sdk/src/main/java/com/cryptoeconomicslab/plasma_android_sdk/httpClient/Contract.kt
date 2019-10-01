@@ -18,7 +18,7 @@ internal interface HttpClientContract {
     fun getExchangeHistory(address: Address): Result<List<ExchangeHistory>>
 
     // status: 201, error: 500
-    fun sendExchange(from: Address, exchangeId: Int): Result<Exchange>
+    fun sendExchange(from: Address, exchangeId: String): Result<Exchange>
 
     // status: 201, error: 500
     fun createExchangeOffer(from: Address, offer: ExchangeOffer): Result<NewOffer>

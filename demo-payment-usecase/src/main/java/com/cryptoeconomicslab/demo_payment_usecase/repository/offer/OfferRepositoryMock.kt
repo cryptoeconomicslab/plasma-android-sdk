@@ -123,6 +123,6 @@ class OfferRepositoryMock : OfferRepository {
         return null
     }
 
-    override fun sendExchange() {
+    override fun sendExchange(exchangeId: String) {
     }
 }
