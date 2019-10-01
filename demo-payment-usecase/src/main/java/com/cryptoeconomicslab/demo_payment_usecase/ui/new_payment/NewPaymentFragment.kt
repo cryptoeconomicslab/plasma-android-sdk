@@ -82,7 +82,7 @@ class NewPaymentFragment(val transition: Transition) : Fragment() {
                 val res = repository.sendPayment(
                     addressText.text.toString(),
                     amountText.text.toString().toInt(),
-                    "0x0000000000000000000000000000000000000001" // TODO: fix later
+                    "0x0000000000000000000000000000000000000000" // TODO: fix later
                 )
                 if (res != null) {
                     showCompletedDialog(context,

@@ -17,6 +17,19 @@ data class SendPaymentRequestBody(
     val tokenAddress: Address
 )
 
+data class ExchangeOfferRequest(
+    val tokenAddress: Address,
+    val amount: Int,
+    val counterParty: CounterParty
+)
+
+data class CreateExchangeOfferRequest(
+    val from: Address,
+    val offer: ExchangeOfferRequest,
+    val session: String
+)
+
+
 internal interface ApiService {
     // General
     @GET("get_balance")
@@ -44,5 +57,5 @@ internal interface ApiService {
 
     // status: 201, error: 500
     @POST("create_exchange_offer")
-    fun createExchangeOffer(@Body from: Address, offer: ExchangeOffer): Call<NewOffer>
+    fun createExchangeOffer(@Body body: CreateExchangeOfferRequest): Call<NewOffer>
 }

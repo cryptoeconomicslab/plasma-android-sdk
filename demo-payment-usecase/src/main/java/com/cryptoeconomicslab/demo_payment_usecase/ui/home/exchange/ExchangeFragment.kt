@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cryptoeconomicslab.demo_payment_usecase.R
 import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepository
-import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepositoryMock
+import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepositoryImpl
 import com.cryptoeconomicslab.demo_payment_usecase.ui.home.ActionBarCallback
 import com.cryptoeconomicslab.demo_payment_usecase.ui.home.Transition
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.ExchangeOffer
@@ -45,7 +45,7 @@ class ExchangeFragment(
         actionBarCallback.setActionBarTitle(getString(R.string.screen__offer_name))
         actionBarCallback.clearActionBarMenu()
 
-        val repository: OfferRepository = OfferRepositoryMock()
+        val repository: OfferRepository = OfferRepositoryImpl()
 
         val view = inflater.inflate(R.layout.fragment_exchange, container, false)
 

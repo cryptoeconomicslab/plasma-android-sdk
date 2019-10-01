@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.cryptoeconomicslab.demo_payment_usecase.R
+import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepositoryImpl;
 
 /**
  * A simple [Fragment] subclass.
@@ -79,18 +80,26 @@ class NewOfferFragment(val transition: Transition) : Fragment() {
         // TODO: change trigger
         overlayView.setOnClickListener {
             context?.let {
-                val targetAmount = targetText.text.toString().toFloat()
+                val targetAmount = targetText.text.toString().toInt()
                 val targetScale = targetSpinner.selectedItem.toString()
-                val sourceAmount = sourceText.text.toString().toFloat()
+                val sourceAmount = sourceText.text.toString().toInt()
                 val sourceScale = sourceSpinner.selectedItem.toString()
+                val repository = OfferRepositoryImpl()
+                val res = repository.createOffer(
+                    "0x0000000000000000000000000000000000000000",
+                    sourceAmount,
+                    "0x0000000000000000000000000000000000000001",
+                    targetAmount
+                )
                 showCompletedDialog(it, sourceAmount, sourceScale, targetAmount, targetScale)
+
             }
         }
 
         return view
     }
 
-    private fun showCompletedDialog(context: Context, sourceAmount: Float, sourceScale:String, targetAmount: Float, targetScale: String) {
+    private fun showCompletedDialog(context: Context, sourceAmount: Int, sourceScale:String, targetAmount: Int, targetScale: String) {
         AlertDialog.Builder(context)
             .setTitle(getString(R.string.new_offer__dialog_completed_title))
             .setMessage(

@@ -7,7 +7,7 @@ import java.util.*
  * ExchangeHistory data class
  */
 data class ExchangeHistory(
-    val exchangeId: Int,
+    val exchangeId: String,
     val historyType: ExchangeHistoryType,
     val tokenId: Int,
     val amount: Int,

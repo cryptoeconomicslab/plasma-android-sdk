@@ -47,7 +47,7 @@ internal fun <T> create(serviceClass: Class<T>): T {
 
     retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl("http://10.0.2.2:7777/")
+        .baseUrl("http://192.168.0.27:7777/")
         .client(httpBuilder.build())
         .build()
 
@@ -203,8 +203,12 @@ class HttpClient  {
     }
 
     // status: 201, error: 500
-    fun createExchangeOffer(from: Address, offer: ExchangeOffer): Result<NewOffer> = try {
-        val response = instance.createExchangeOffer(from, offer).execute()
+    fun createExchangeOffer(offer: ExchangeOfferRequest): Result<NewOffer> = try {
+        val response = instance.createExchangeOffer(CreateExchangeOfferRequest(
+            from = address!!,
+            offer = offer,
+            session = session!!
+        )).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
