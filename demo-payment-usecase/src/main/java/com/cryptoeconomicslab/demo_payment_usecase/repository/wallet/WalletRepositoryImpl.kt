@@ -39,15 +39,16 @@ class WalletRepositoryImpl(private val context: Context) : WalletRepository {
     }
 
     override fun getAddress(): Address? {
-        return client.getAddress()
+        return native_client.getAddress()
     }
 
     override fun createAccount(): Account? {
         val session = native_client.createAccount()
+        val address = native_client.getAddress()
         val preferences = context.getSharedPreferences("client_data", Context.MODE_PRIVATE)
         val editor = preferences.edit()
         editor.putString("session", session)
 //        editor.putString("address", it.address)
-        return Account("0x000000", session)
+        return Account(address, session)
     }
 }

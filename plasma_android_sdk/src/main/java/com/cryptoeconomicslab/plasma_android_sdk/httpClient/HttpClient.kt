@@ -47,7 +47,7 @@ internal fun <T> create(serviceClass: Class<T>): T {
 
     retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl("http://192.168.0.27:7777/")
+        .baseUrl("http://192.168.0.9:7777/")
         .client(httpBuilder.build())
         .build()
 

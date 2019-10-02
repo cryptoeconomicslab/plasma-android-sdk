@@ -68,6 +68,22 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
 }
 
 #[no_mangle]
+pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_getAddress(
+    env: JNIEnv,
+    _: JObject,
+    j_session: JString,
+) -> jstring {
+    let session = CString::from(CStr::from_ptr(env.get_string(j_session).unwrap().as_ptr()));
+    android_logger::init_once(Config::default().with_min_level(Level::Trace));
+
+    let address = AndroidClient::get_address(session.to_str().unwrap().to_string());
+
+    env.new_string(format!("{:?}", address))
+        .unwrap()
+        .into_inner()
+}
+
+#[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_getBalance(
     env: JNIEnv,
     _: JObject,

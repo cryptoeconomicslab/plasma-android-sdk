@@ -68,6 +68,11 @@ class PlasmaClient {
         return session!!
     }
 
+    fun getAddress(): String {
+        var address =  Client().getAddress(session!!)
+        return address
+    }
+
     /**
      * [Pubsub function]
      * This method will invoke rust method to listen client
