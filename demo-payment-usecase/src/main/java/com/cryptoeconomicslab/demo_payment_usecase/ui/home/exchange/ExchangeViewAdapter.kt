@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cryptoeconomicslab.demo_payment_usecase.R
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.ExchangeOffer
+import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
 
 class ExchangeViewAdapter(private val context: Context, private val items: List<ExchangeOffer>) :
     RecyclerView.Adapter<ExchangeViewAdapter.ViewHolder>() {
@@ -28,18 +29,28 @@ class ExchangeViewAdapter(private val context: Context, private val items: List<
             sourceAmountText.text = context.getString(
                 R.string.exchange__amount_text,
                 exchangeOffer.amount,
-                exchangeOffer.tokenAddress.toString()
+                addressToToken(exchangeOffer.tokenAddress)
             )
             targetAmountText.text = context.getString(
                 R.string.exchange__amount_text,
                 exchangeOffer.counterParty.amount,
-                exchangeOffer.counterParty.tokenAddress.toString()
+                addressToToken(exchangeOffer.counterParty.tokenAddress)
             )
             addressText.text = exchangeOffer.counterParty.address
 
             view.setOnClickListener {
                 itemClickListener?.onItemClick(items[position])
             }
+        }
+    }
+
+    fun addressToToken(address: Address): String {
+        if (address == "0x0000000000000000000000000000000000000001") {
+            return "ETH"
+        } else if (address == "0x0000000000000000000000000000000000000000") {
+            return "DAI"
+        } else {
+            return "UNKNOWN"
         }
     }
 
