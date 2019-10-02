@@ -12,17 +12,9 @@ log = "*"
 android_logger = "0.8"
 ethereum-types = "^0.5.2"
 
-[dependencies.plasma-core]
-git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
-
-[dependencies.pubsub-messaging]
-git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
-
 [dependencies.plasma-clients]
-git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
-
-[dependencies.plasma-db]
-git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
+# git = "https://github.com/cryptoeconomicslab/plasma-rust-framework.git"
+path = "../../plasma-rust-framework/clients"
 
 [profile.release]
 lto = true

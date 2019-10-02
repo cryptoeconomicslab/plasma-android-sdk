@@ -70,6 +70,10 @@ class HttpClient  {
         address = _address
     }
 
+    fun getSession(): String {
+        return session!!
+    }
+
     // General
     // TODO: check if error handling is in right way.
     fun getBalance(): Result<List<Balance>> = try {

@@ -8,11 +8,13 @@ import com.cryptoeconomicslab.plasma_android_sdk.pubsub.Client
 import com.cryptoeconomicslab.plasma_android_sdk.database.DatabaseExecutor
 import com.cryptoeconomicslab.plasma_android_sdk.database.entity.SimpleEntity
 import com.cryptoeconomicslab.plasma_android_sdk.hello_world.HelloWorld
+import com.cryptoeconomicslab.plasma_android_sdk.httpClient.HttpClient
 
 /**
  * Client for communication with Rust layer.
  */
 class PlasmaClient {
+    private var session: String? = null
 
     companion object {
         /**
@@ -23,6 +25,11 @@ class PlasmaClient {
             System.loadLibrary("plasma_android_sdk")
             ContextProvider.init(context)
         }
+    }
+
+
+    fun loadSession(_session: String) {
+        session = _session
     }
 
     /**
@@ -56,12 +63,19 @@ class PlasmaClient {
         DatabaseClient().insertFromRust(string, DatabaseExecutor)
     }
 
+    fun createAccount(): String {
+        session =  Client().createAccount()
+        return session!!
+    }
+
     /**
      * [Pubsub function]
      * This method will invoke rust method to listen client
      */
-    fun listen_client(url: String) {
-        Log.d("listen_client", Client().listen(url))
+    fun get_balance(): Int {
+        var balance = Client().getBalance(session!!)
+        Log.d("get_balance", balance)
+        return balance.toInt()
     }
 
     fun send(
@@ -71,13 +85,6 @@ class PlasmaClient {
         end: Int,
         to: String
     ) {
-        Log.d("listen_client", Client().send(
-            endpoint,
-            secretkey,
-            start,
-            end,
-            to
-        ))
     }
 
 }

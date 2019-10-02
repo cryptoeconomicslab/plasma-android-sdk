@@ -6,10 +6,12 @@ import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.HttpClient
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.Account
 import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.Balance
+import com.cryptoeconomicslab.plasma_android_sdk.PlasmaClient
 
 class WalletRepositoryImpl(private val context: Context) : WalletRepository {
     companion object {
         val client = HttpClient()
+        val native_client = PlasmaClient()
     }
 
     override fun isLoggedIn(): Boolean {
@@ -20,13 +22,20 @@ class WalletRepositoryImpl(private val context: Context) : WalletRepository {
         if (session.isNullOrEmpty() || address.isNullOrEmpty()) {
             return false
         } else {
-            client.loadSession(session, address)
+            native_client.loadSession(session)
             return true
         }
     }
 
+
+
     override fun getWallets(): List<Balance> {
-        return client.getBalance().getOrDefault(emptyList())
+        return listOf(Balance(
+            "0x00000",
+            "ETH",
+            native_client.get_balance()
+        ))
+        //return client.getBalance().getOrDefault(emptyList())
     }
 
     override fun getAddress(): Address? {
@@ -34,19 +43,11 @@ class WalletRepositoryImpl(private val context: Context) : WalletRepository {
     }
 
     override fun createAccount(): Account? {
-        val account = client.createAccount()
-        if (account.isSuccess) {
-            val a = account.getOrNull();
-            a?.let {
-                val preferences = context.getSharedPreferences("client_data", Context.MODE_PRIVATE)
-                val editor = preferences.edit()
-                editor.putString("session", it.session)
-                editor.putString("address", it.address)
-                editor.apply()
-            }
-            return a
-        }
-
-        return null
+        val session = native_client.createAccount()
+        val preferences = context.getSharedPreferences("client_data", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("session", session)
+//        editor.putString("address", it.address)
+        return Account("0x000000", session)
     }
 }

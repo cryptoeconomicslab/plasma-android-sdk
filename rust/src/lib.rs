@@ -16,10 +16,7 @@ use android_logger::{Config, FilterBuilder};
 use bytes::Bytes;
 use ethereum_types::Address;
 use log::Level;
-use plasma_clients::plasma::PlasmaClient;
-use plasma_core::data_structure::Range;
-use plasma_db::impls::kvs::CoreDbMemoryImpl;
-use pubsub_messaging::{connect, ClientHandler as Handler, Message, Sender};
+use plasma_clients::AndroidClient;
 
 #[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_1world_HelloWorld_hello(
@@ -31,11 +28,9 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_hello_
         env.get_string(j_recipient).unwrap().as_ptr(),
     ));
 
-    let range = Range::new(0, 100);
-
     let output = env
         .new_string(
-            "Hello ".to_owned() + &format!("range={:?}", range) + recipient.to_str().unwrap(),
+            "Hello ".to_owned() + recipient.to_str().unwrap(),
         )
         .unwrap();
 
@@ -58,33 +53,37 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_databa
     .unwrap();
 }
 
-#[derive(Clone)]
-struct Handle();
-
-impl Handler for Handle {
-    fn handle_message(&self, msg: Message, sender: Sender) {
-        println!("ClientHandler handle_message: {:?}", msg);
-    }
-}
-
 #[no_mangle]
-pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_listen(
+pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_createAccount(
     env: JNIEnv,
-    _: JObject,
-    j_endpoint: JString,
+    _: JObject
 ) -> jstring {
-    let endpoint = CString::from(CStr::from_ptr(env.get_string(j_endpoint).unwrap().as_ptr()));
     android_logger::init_once(Config::default().with_min_level(Level::Trace));
 
-    let handler = Handle();
-    let mut client = connect(endpoint.to_str().unwrap().to_string(), handler).unwrap();
-    let msg = Message::new("SERVER".to_string(), b"Hello from Android".to_vec());
-    client.send(msg.clone());
+    let session = AndroidClient::create_account();
 
-    env.new_string(format!("I am client, I sent message: {:?}", msg))
+    env.new_string(format!("{:?}", session))
         .unwrap()
         .into_inner()
 }
+
+#[no_mangle]
+pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_getBalance(
+    env: JNIEnv,
+    _: JObject,
+    j_session: JString,
+) -> jstring {
+    let session = CString::from(CStr::from_ptr(env.get_string(j_session).unwrap().as_ptr()));
+    android_logger::init_once(Config::default().with_min_level(Level::Trace));
+
+    let balance = AndroidClient::get_balance(session.to_str().unwrap().to_string());
+
+    env.new_string(format!("{:?}", balance))
+        .unwrap()
+        .into_inner()
+}
+
+/*
 
 #[no_mangle]
 pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub_Client_send(
@@ -117,3 +116,4 @@ pub unsafe extern "C" fn Java_com_cryptoeconomicslab_plasma_1android_1sdk_pubsub
 
     env.new_string(format!("Sended!")).unwrap().into_inner()
 }
+*/
