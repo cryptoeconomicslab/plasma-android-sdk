@@ -186,8 +186,12 @@ class HttpClient  {
     }
 
     // status: 201, error: 500
-    fun sendExchange(from: Address, exchangeId: Int): Result<Exchange> = try {
-        val response = instance.sendExchange(from, exchangeId).execute()
+    fun sendExchange(exchangeId: String): Result<Exchange> = try {
+        val response = instance.sendExchange(SendExchangeRequest(
+            from = address!!,
+            exchangeId = exchangeId,
+            session = session!!
+        )).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {
