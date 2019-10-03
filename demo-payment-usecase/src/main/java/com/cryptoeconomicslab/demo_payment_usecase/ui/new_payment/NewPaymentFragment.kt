@@ -2,18 +2,16 @@ package com.cryptoeconomicslab.demo_payment_usecase.ui.new_payment
 
 
 import android.content.Context
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.cryptoeconomicslab.demo_payment_usecase.R
 import com.cryptoeconomicslab.demo_payment_usecase.repository.payment.PaymentRepositoryImpl
-import com.cryptoeconomicslab.plasma_android_sdk.httpClient.entity.Payment
 
 /**
  * A simple [Fragment] subclass.
@@ -24,6 +22,7 @@ class NewPaymentFragment(val transition: Transition) : Fragment() {
     lateinit var overlayView: View
 
     lateinit var amountText: EditText
+    lateinit var amountScaleSpinner: Spinner
     lateinit var addressText: EditText
 
     companion object {
@@ -41,6 +40,18 @@ class NewPaymentFragment(val transition: Transition) : Fragment() {
 
         amountText = view.findViewById(R.id.amount_text_field)
         addressText = view.findViewById(R.id.target_text)
+
+        amountScaleSpinner = view.findViewById<Spinner>(R.id.amount_scale_spinner).apply {
+            val adapter = ArrayAdapter(
+                context,
+                R.layout.spinner_cell,
+                resources.getStringArray(R.array.amount_scale_values)
+            )
+            adapter.setDropDownViewResource(R.layout.spinner_drop_down_cell)
+            setAdapter(adapter)
+
+            background.setColorFilter(context.getColor(R.color.colorLight), PorterDuff.Mode.SRC_ATOP);
+        }
 
         view.findViewById<Button>(R.id.send_button).apply {
             setOnClickListener {
@@ -85,7 +96,8 @@ class NewPaymentFragment(val transition: Transition) : Fragment() {
                     "0x0000000000000000000000000000000000000000" // TODO: fix later
                 )
                 if (res != null) {
-                    showCompletedDialog(context,
+                    showCompletedDialog(
+                        context,
                         res.amount,
                         res.to
                     )
