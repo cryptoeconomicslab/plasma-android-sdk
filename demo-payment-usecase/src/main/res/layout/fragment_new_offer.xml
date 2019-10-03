@@ -124,22 +124,16 @@
             android:id="@+id/offer_button"
             android:layout_width="0dp"
             android:layout_height="@dimen/button_size__height"
-            android:layout_margin="@dimen/margin_size__16"
+            android:layout_marginStart="@dimen/margin_size__16"
+            android:layout_marginTop="@dimen/margin_size__32"
+            android:layout_marginEnd="@dimen/margin_size__16"
             android:background="@drawable/button_main_background"
             android:text="@string/new_offer__button_label"
             android:textAllCaps="false"
             android:textColor="@color/textColor"
-            app:layout_constraintBottom_toTopOf="@id/bottom_space"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    <Space
-            android:id="@+id/bottom_space"
-            android:layout_width="0dp"
-            android:layout_height="188dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/target_container" />
 
     <View
             android:id="@+id/overlay"
