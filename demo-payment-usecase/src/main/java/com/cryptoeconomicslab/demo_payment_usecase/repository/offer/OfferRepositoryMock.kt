@@ -42,7 +42,7 @@ class OfferRepositoryMock : OfferRepository {
         ExchangeHistory(
             exchangeId = "a",
             historyType = ExchangeHistoryType.OFFERED,
-            tokenId = 0,
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
@@ -55,7 +55,7 @@ class OfferRepositoryMock : OfferRepository {
         ExchangeHistory(
             exchangeId = "b",
             historyType = ExchangeHistoryType.OFFERED,
-            tokenId = 0,
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
@@ -68,7 +68,7 @@ class OfferRepositoryMock : OfferRepository {
         ExchangeHistory(
             exchangeId = "c",
             historyType = ExchangeHistoryType.OFFERED,
-            tokenId = 0,
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
@@ -81,7 +81,7 @@ class OfferRepositoryMock : OfferRepository {
         ExchangeHistory(
             exchangeId = "d",
             historyType = ExchangeHistoryType.OFFERED,
-            tokenId = 0,
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
@@ -94,7 +94,7 @@ class OfferRepositoryMock : OfferRepository {
         ExchangeHistory(
             exchangeId = "e",
             historyType = ExchangeHistoryType.OFFERED,
-            tokenId = 0,
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
@@ -107,7 +107,7 @@ class OfferRepositoryMock : OfferRepository {
         ExchangeHistory(
             exchangeId = "f",
             historyType = ExchangeHistoryType.OFFERED,
-            tokenId = 0,
+            tokenAddress = "0x0000000000000000000000000000000000000000",
             amount = 12,
             status = ExchangeHistoryStatus.CONFIRMED,
             counterParty = CounterParty(
