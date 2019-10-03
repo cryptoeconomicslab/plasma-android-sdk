@@ -9,7 +9,7 @@ import java.util.*
 data class ExchangeHistory(
     val exchangeId: String,
     val historyType: ExchangeHistoryType,
-    val tokenId: Int,
+    val tokenAddress: String,
     val amount: Int,
     val status: ExchangeHistoryStatus,
     val counterParty: CounterParty,
@@ -17,6 +17,7 @@ data class ExchangeHistory(
 )
 
 enum class ExchangeHistoryType {
+    OFFER,
     OFFERED,
 }
 
