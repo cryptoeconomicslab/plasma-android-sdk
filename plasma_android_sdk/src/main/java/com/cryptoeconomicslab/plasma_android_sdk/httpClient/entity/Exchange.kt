@@ -6,6 +6,6 @@ import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
  * ExchangeOffer data class
  */
 data class Exchange(
-    val exchangeId: Int,
+    val exchangeId: String,
     val from: Address
 )

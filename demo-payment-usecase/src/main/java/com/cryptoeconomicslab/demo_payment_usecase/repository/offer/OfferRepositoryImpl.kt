@@ -14,7 +14,7 @@ class OfferRepositoryImpl : OfferRepository {
         val client = HttpClient()
     }
     override fun getOfferHistories(): List<ExchangeHistory> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return OfferRepositoryImpl.client.getExchangeHistory().getOrDefault(listOf())
     }
 
     override fun getOffers(): List<ExchangeOffer> {

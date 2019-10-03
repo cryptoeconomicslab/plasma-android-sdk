@@ -170,8 +170,8 @@ class HttpClient  {
         Result.failure(ApplicationError.InternalError("Internal Error: calling get_exchange_offers"))
     }
 
-    fun getExchangeHistory(address: Address): Result<List<ExchangeHistory>> = try {
-        val response = instance.getExchangeHistory(address).execute()
+    fun getExchangeHistory(): Result<List<ExchangeHistory>> = try {
+        val response = instance.getExchangeHistory(session!!).execute()
         val body = response.body()
         if (response.isSuccessful) {
             body?.let {

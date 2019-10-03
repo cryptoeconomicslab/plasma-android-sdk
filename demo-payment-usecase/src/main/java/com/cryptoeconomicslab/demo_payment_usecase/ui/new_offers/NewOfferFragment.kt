@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.cryptoeconomicslab.demo_payment_usecase.R
 import com.cryptoeconomicslab.demo_payment_usecase.repository.offer.OfferRepositoryImpl;
+import com.cryptoeconomicslab.plasma_android_sdk.httpClient.Address
 
 /**
  * A simple [Fragment] subclass.
@@ -86,9 +87,9 @@ class NewOfferFragment(val transition: Transition) : Fragment() {
                 val sourceScale = sourceSpinner.selectedItem.toString()
                 val repository = OfferRepositoryImpl()
                 val res = repository.createOffer(
-                    "0x0000000000000000000000000000000000000000",
+                    tokenToAddress(sourceScale),
                     sourceAmount,
-                    "0x0000000000000000000000000000000000000001",
+                    tokenToAddress(targetScale),
                     targetAmount
                 )
                 showCompletedDialog(it, sourceAmount, sourceScale, targetAmount, targetScale)
@@ -98,6 +99,17 @@ class NewOfferFragment(val transition: Transition) : Fragment() {
 
         return view
     }
+
+    fun tokenToAddress(token: String): Address {
+        if (token == "ETH") {
+            return "0x0000000000000000000000000000000000000000"
+        } else if (token == "DAI") {
+            return "0x0000000000000000000000000000000000000001"
+        } else {
+            return "0x0000000000000000000000000000000000000000"
+        }
+    }
+
 
     private fun showCompletedDialog(context: Context, sourceAmount: Int, sourceScale:String, targetAmount: Int, targetScale: String) {
         AlertDialog.Builder(context)

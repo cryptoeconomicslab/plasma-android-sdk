@@ -51,7 +51,7 @@ class OfferViewAdapter(private val context: Context, private val items: List<Exc
                 exchangeHistory.counterParty.amount,
                 "DAI"
             )
-            addressText.text = exchangeHistory.counterParty.address!!
+//            addressText.text = exchangeHistory.counterParty.address!!
         }
     }
 
