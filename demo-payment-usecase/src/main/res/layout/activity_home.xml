@@ -11,10 +11,9 @@
             android:id="@+id/container"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
@@ -28,6 +27,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_bottom_navigation" />
+            app:menu="@menu/menu_bottom_navigation"/>
+    <TextView
+            android:id="@+id/address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="address"
+            android:textColor="@color/textColor" app:layout_constraintBottom_toTopOf="@+id/container" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+            android:id="@+id/copy_clipboard_button"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp" android:background="#00FFFFFF"
+            android:drawableStart="@drawable/ic_address" app:layout_constraintBottom_toTopOf="@+id/container" app:layout_constraintStart_toEndOf="@+id/address_text"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

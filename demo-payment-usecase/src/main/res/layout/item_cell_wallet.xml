@@ -15,30 +15,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_size__8"
             android:textColor="@color/textColorLight"
+            android:textSize="@dimen/text_size__headline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="PETH" />
+            app:layout_constraintTop_toTopOf="parent" tools:text="PETH"/>
 
     <TextView
             android:id="@+id/amount_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_size__4"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/text_size__display3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="12.5" />
-
-    <TextView
-            android:id="@+id/address_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_address"
-            android:drawablePadding="@dimen/padding_size__8"
-            android:textColor="@color/textColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="0x123456789abcdef123456789" />
+            android:layout_margin="@dimen/margin_size__16"
+            android:textColor="@color/textColor" android:textSize="@dimen/text_size__display3"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" tools:text="12.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

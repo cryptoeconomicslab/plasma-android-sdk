@@ -24,7 +24,6 @@ class WalletViewAdapter(private val context: Context, private val items: List<Ba
         holder.apply {
             amountText.text = items[position].balance.toString()
             tokenText.text = items[position].tokenName
-            addressText.text = items[position].tokenAddress
         }
     }
 
@@ -32,6 +31,5 @@ class WalletViewAdapter(private val context: Context, private val items: List<Ba
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val amountText: TextView = view.findViewById(R.id.amount_text)
         val tokenText: TextView = view.findViewById(R.id.token_text)
-        val addressText: TextView = view.findViewById(R.id.address_text)
     }
 }
