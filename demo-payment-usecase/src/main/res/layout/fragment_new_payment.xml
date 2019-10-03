@@ -39,12 +39,12 @@
             app:layout_constraintTop_toBottomOf="@id/amount_text"
             app:theme="@style/PaymentEditTextStyle" />
 
-    <TextView
-            android:id="@+id/scale_text"
+    <Spinner
+            android:id="@+id/amount_scale_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_size__8"
             android:layout_marginBottom="@dimen/margin_size__8"
-            android:text="@string/payment__amount_scale"
             android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@id/amount_text_field"
             app:layout_constraintStart_toEndOf="@+id/amount_text_field" />
